@@ -1,0 +1,7 @@
+<?php if(isset($errors) && count($errors) > 0) : ?>
+    <ul class='error'>
+        <?php foreach($errors as $value) : ?>
+            <li class='erreur'><?= $value; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

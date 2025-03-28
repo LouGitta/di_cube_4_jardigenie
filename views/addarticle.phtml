@@ -1,0 +1,42 @@
+        
+        
+        <fieldset id='addArticle'>
+            <legend>Ajout d'un nouvel article</legend>
+            <form enctype="multipart/form-data" class="user-form" method="POST" action="<?=htmlspecialchars($route)?>">
+                <br>
+                <label for="name">Nom de l'article</label>
+                <input type="text" name="name" value='<?= htmlspecialchars($newArticle['name']) ?>'>
+                <br><br>
+                <label for="price">Prix</label>
+                <input type="number" name="price" step="0.01" min="0" max="100000" value='<?= htmlspecialchars($newArticle['price']) ?>'>
+                <br><br>
+
+                <label for="category">Catégorie</label>
+                <select name="category">
+                    <option value="<?= htmlspecialchars($newArticle['category']) ?>"><?= htmlspecialchars($newArticle['category']) ?></option>
+                    <option value="Outils">Outils</option>
+                    <option value="Bacs">Bacs</option>
+                    <option value="Graines">Graines</option>
+                </select>
+                <br><br>
+                <label for="description">Decription</label>
+                <textarea name="description"><?= htmlspecialchars($newArticle['description']) ?></textarea>
+                <br><br>
+
+                <label for="img">Image</label>
+                <input type="file" accept="image/*" name="img">
+                <br><br>
+                
+                <br><br>
+                <button type="submit" name="submit" class='button'>Valider</button>
+            </form>   
+        </fieldset>
+        
+        <?php include_once('views/errors.phtml'); ?>  
+
+
+        
+        
+
+    
+
