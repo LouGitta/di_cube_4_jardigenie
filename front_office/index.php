@@ -19,48 +19,10 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'byCat':
-
             $controller = new Controllers\ProductController();
             $controller->displayByCat();
             break;
 
-        case 'addProduct':
-
-            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "add") {
-                // Afficher le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->displayForm();
-            }else {
-                // Soumettre le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->submitForm();
-            }
-            break;
-
-        case 'editProduct':
-        
-            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "editProduct") {
-                // Afficher le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->displayFormEditProduct($_GET['id']);
-            }else {
-                // Soumettre le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->submitFormEditProduct();
-            }
-            break;
-
-
-        case 'deleteProduct':
-                        
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-
-                $controller = new Controllers\ProductController();
-                $controller->deleteProduct($_GET['id']);
-            }
-            header('location: index.php?route=home');
-            exit;
-            break; 
         
         case 'nouscontacter' :
             $controller = new Controllers\PageController();
