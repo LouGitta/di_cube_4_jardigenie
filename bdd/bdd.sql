@@ -1,10 +1,3 @@
-{
-    "article": {
-        "title": "MODIIIIIIIIF",
-        "description": "AAAAAAAAAAAA",
-        "price": "50",
-        "quantity": "08753"
-    }
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY, 
     first_name VARCHAR(255),
