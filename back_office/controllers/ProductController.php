@@ -2,14 +2,14 @@
 
 namespace Controllers;
 
-class ArticleController {
+class ProductController {
     
     public function display() {
         // Afficher la page d'accueil
-        // Il nous faut récupérer la liste de tous les articles depuis la BDD
+        // Il nous faut récupérer la liste de tous les products depuis la BDD
 
-        $model = new \Models\Articles();
-        $listArticles = $model->getAllArticles();
+        $model = new \Models\Products();
+        $listProducts = $model->getAllProducts();
 
         // Affiche la vue
         $template = "home.phtml";
@@ -32,9 +32,9 @@ class ArticleController {
 
             } else {
 
-                // Il nous faut récupérer la liste de tous les articles par CATEGORIE depuis la BDD en passant le parametre venu du formulaire
-                $model = new \Models\Articles();
-                $listArticles = $model->getArticlesByCat($_POST['cat']);
+                // Il nous faut récupérer la liste de tous les products par CATEGORIE depuis la BDD en passant le parametre venu du formulaire
+                $model = new \Models\Products();
+                $listProducts = $model->getProductsByCat($_POST['cat']);
 
                 // Affiche la vue
                 $template = "home.phtml";
@@ -50,12 +50,12 @@ class ArticleController {
 
     }
     
-    // Formulaire pour ajouter un article
+    // Formulaire pour ajouter un product
     public function displayForm () {
 
-        $route = 'index.php?route=addArticle&ref=add';
+        $route = 'index.php?route=addProduct&ref=add';
         
-        $newArticle = [
+        $newProduct = [
                 'name'          => '',
                 'price'         => '',
                 'category'      => '',
@@ -64,11 +64,11 @@ class ArticleController {
         ];
         
 
-        $template = "addarticle.phtml";
+        $template = "addproduct.phtml";
         include_once 'views/layout.phtml';              
     }
 
-    // Validation de l'ajout d'un article + retour sur la home
+    // Validation de l'ajout d'un product + retour sur la home
     public function submitForm () {
 
         // On instancie notre tableau d'erreurs à vide pour les futurs messages d'erreurs de saisie du formulaire
@@ -80,7 +80,7 @@ class ArticleController {
             array_key_exists('category', $_POST) && array_key_exists('description', $_POST)) {
                 
     
-            $newArticle = [
+            $newProduct = [
                 'name'          => $_POST['name'],
                 'price'         => trim($_POST['price']),
                 'category'      => $_POST['category'],
@@ -89,19 +89,19 @@ class ArticleController {
                     ];
         
                 // Vérification de tous les champs
-                if ( strlen($newArticle['name']) < 3) {
-                    $errors[] = "Veuillez saisir un nom d'article de plus de 2 lettres";
+                if ( strlen($newProduct['name']) < 3) {
+                    $errors[] = "Veuillez saisir un nom d'product de plus de 2 lettres";
                 }
 
-                if ($newArticle['price'] <= 0 || $newArticle['price'] >= 100000) {
+                if ($newProduct['price'] <= 0 || $newProduct['price'] >= 100000) {
                     $errors[] = "Veuillez saisir un prix entre 0 € et 100 000 €";
                 }
 
-                if ($newArticle['category'] == '') {
+                if ($newProduct['category'] == '') {
                     $errors[] = "Veuillez sélectionner une catégorie";
                 }
 
-                if ( strlen($newArticle['description']) < 3) {
+                if ( strlen($newProduct['description']) < 3) {
                     $errors[] = "Veuillez saisir une description de plus de 2 lettres";
                 }
              
@@ -111,23 +111,23 @@ class ArticleController {
                     if( isset($_FILES['img']) && $_FILES['img']['name'] !== '' ) {
                         $dossier = "images";
                         $model = new \Models\Upload();
-                        $newArticle['img'] = $model->upload($_FILES['img'], $dossier, $errors);
+                        $newProduct['img'] = $model->upload($_FILES['img'], $dossier, $errors);
                       
                     }
                     // On enregistre toutes les données sous forme de tableau dans une variable data
                     $data = [
-                                $newArticle['name'],
-                                $newArticle['price'], 
-                                $newArticle['category'], 
-                                $newArticle['description'], 
-                                $newArticle['img']
+                                $newProduct['name'],
+                                $newProduct['price'], 
+                                $newProduct['category'], 
+                                $newProduct['description'], 
+                                $newProduct['img']
                     ];
                     
-                    $model = new \Models\Articles();
-                    $model->addNewArticle($data);
+                    $model = new \Models\Products();
+                    $model->addNewProduct($data);
                     
         
-                    //retour sur la home après ajout d'un nouvel article
+                    //retour sur la home après ajout d'un nouvel product
                     header('Location: index.php');
                     exit();
                     
@@ -136,25 +136,25 @@ class ArticleController {
     
     
             }
-            $route = 'index.php?route=addArticle&ref=add';
+            $route = 'index.php?route=addProduct&ref=add';
 
-            $template = "addarticle.phtml";
+            $template = "addproduct.phtml";
             include_once 'views/layout.phtml';   
     }
 
       
-    // Affichage du formulaire inculant l'article à modifier
-    public function displayFormEditArticle ($id) {
+    // Affichage du formulaire inculant l'product à modifier
+    public function displayFormEditProduct ($id) {
         
             
-        $route = 'index.php?route=editArticle&ref=editArticle&id='.$id;
+        $route = 'index.php?route=editProduct&ref=editProduct&id='.$id;
         
-        //récupération de l'article à modifier
-        $model = new \Models\Articles();
-        $artmodif = $model->getArticleById($id);
+        //récupération de l'product à modifier
+        $model = new \Models\Products();
+        $artmodif = $model->getProductById($id);
 
         
-        $newArticle = [
+        $newProduct = [
                         'id'            => $artmodif['art_id'],
                         'name'          => $artmodif['art_name'],
                         'price'         => $artmodif['art_price'],
@@ -167,18 +167,18 @@ class ArticleController {
         $_SESSION['saveimg']=$artmodif['art_img'];
         
             // affiche la vue
-            $template = "addarticle.phtml";
+            $template = "addproduct.phtml";
             include_once 'views/layout.phtml';       
     
     
     }
 
 
-    //Sousmission des modification de l'article + retour sur l'accueil
-    public function submitFormEditArticle() {
+    //Sousmission des modification de l'product + retour sur l'accueil
+    public function submitFormEditProduct() {
 
 
-        $route = 'index.php?route=editArticle&ref=editArticle&id='.$_GET['id'];
+        $route = 'index.php?route=editProduct&ref=editProduct&id='.$_GET['id'];
         $errors=[];
                 
         if ( isset( $_POST['name'] ) && 
@@ -189,7 +189,7 @@ class ArticleController {
                 
 
 
-            $newArticle = [
+            $newProduct = [
                             'id'            => $_GET['id'],
                             'name'          => $_POST['name'],
                             'price'         => trim($_POST['price']),
@@ -200,19 +200,19 @@ class ArticleController {
 
 
             // Vérification de tous les champs
-            if ( strlen($newArticle['name']) < 3) {
-                $errors[] = "Veuillez saisir un nom d'article de plus de 2 lettres";
+            if ( strlen($newProduct['name']) < 3) {
+                $errors[] = "Veuillez saisir un nom d'product de plus de 2 lettres";
             }
 
-            if ($newArticle['price'] <= 0 || $newArticle['price'] >= 100000) {
+            if ($newProduct['price'] <= 0 || $newProduct['price'] >= 100000) {
                 $errors[] = "Veuillez saisir un prix entre 0 € et 100 000 €";
             }
 
-            if ($newArticle['category'] == '') {
+            if ($newProduct['category'] == '') {
                 $errors[] = "Veuillez sélectionner une catégorie";
             }
 
-            if ( strlen($newArticle['description']) < 3) {
+            if ( strlen($newProduct['description']) < 3) {
                 $errors[] = "Veuillez saisir une description de plus de 2 lettres";
             }
             
@@ -230,23 +230,23 @@ class ArticleController {
                     
                     $dossier = "images";
                     $model = new \Models\Upload();
-                    $newArticle['img'] = $model->upload($_FILES['img'], $dossier, $errors);
+                    $newProduct['img'] = $model->upload($_FILES['img'], $dossier, $errors);
                 }
 
                 
                     // On enregistre toutes les données sous forme de tableau dans une variable data
                     $newData = [
-                        'art_name'          => $newArticle['name'],
-                        'art_price'         => $newArticle['price'], 
-                        'art_category'      => $newArticle['category'], 
-                        'art_description'   => $newArticle['description'], 
-                        'art_img'           => $newArticle['img']
+                        'art_name'          => $newProduct['name'],
+                        'art_price'         => $newProduct['price'], 
+                        'art_category'      => $newProduct['category'], 
+                        'art_description'   => $newProduct['description'], 
+                        'art_img'           => $newProduct['img']
                     ];
             
 
                 
-                $model = new \Models\Articles();
-                $model->updateArticleById($newData, $_GET['id']);
+                $model = new \Models\Products();
+                $model->updateProductById($newData, $_GET['id']);
               
                
                
@@ -258,22 +258,22 @@ class ArticleController {
             }
     
         }
-        $template = "addarticle.phtml";
+        $template = "addproduct.phtml";
         include_once 'views/layout.phtml';      
     }
 
-    //Supression d'un article
-    public function deleteArticle($id) {
+    //Supression d'un product
+    public function deleteProduct($id) {
 
-        $model = new \Models\Articles();
-        $imageName = $model->getImageArticlebyId($id); 
+        $model = new \Models\Products();
+        $imageName = $model->getImageProductbyId($id); 
 
         // Je supprime l'image de mon dossier dans la mesure où elle ne s'appelle pas "noPicture.png"
         if($imageName['art_img'] != "noPicture.png") {
             unlink('public/images/'.$imageName['art_img']); 
         }
         
-        $model->deleteArticleById('articles', 'art_id', $id);
+        $model->deleteProductById('products', 'art_id', $id);
         
 
         

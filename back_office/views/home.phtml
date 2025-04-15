@@ -17,39 +17,39 @@
 
 
     </form>
-    <a href="index.php?route=addArticle" class="button">Ajouter un article</a>
+    <a href="index.php?route=addProduct" class="button">Ajouter un produit</a>
 
 </div>
 
 <section>
 
 
-<?php foreach ($listArticles as $value):?> 
+<?php foreach ($listProducts as $value):?> 
 
     
 
-    <div class="articles">
+    <div class="products">
         <div class="flexleft">
-        <img src="public/images/<?= htmlspecialchars($value['art_img']) ?>" alt="<?= htmlspecialchars($value['art_name']) ?>">
-        <div class="content-article">
+        <img src="public/images/<?= htmlspecialchars($value['_img']) ?>" alt="<?= htmlspecialchars($value['_name']) ?>">
+        <div class="content-product">
             <div>
                 <div class="gras">
-                <?= htmlspecialchars($value['art_name']) ?>
+                <?= htmlspecialchars($value['_name']) ?>
                 </div>
                 <div>
-                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['art_category']) ?>
+                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['_category']) ?>
                 </div>
             </div>
             <div class="gras">
-                Prix : <?= htmlspecialchars(number_format($value['art_price'], 2))?> €
+                Prix : <?= htmlspecialchars(number_format($value['_price'], 2))?> €
             </div>
-            <p><?= htmlspecialchars($value['art_description'])?></p>
+            <p><?= htmlspecialchars($value['_description'])?></p>
         </div>
         </div>
         
-        <div class="button-article">
-            <a href="index.php?route=editArticle&id=<?= htmlspecialchars($value['art_id']) ?>" class="button">Modifier</a>
-            <a href="index.php?route=deleteArticle&id=<?= htmlspecialchars($value['art_id']) ?>" class="button">Supprimer</a>
+        <div class="button-product">
+            <a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Modifier</a>
+            <a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Supprimer</a>
         </div>
     </div>
     <hr>
