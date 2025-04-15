@@ -30,20 +30,20 @@
 
     <div class="products">
         <div class="flexleft">
-        <img src="public/images/<?= htmlspecialchars($value['_img']) ?>" alt="<?= htmlspecialchars($value['_name']) ?>">
+        <img src="public/images/<?= htmlspecialchars($value['image']) ?>" alt="<?= htmlspecialchars($value['name']) ?>">
         <div class="content-product">
             <div>
                 <div class="gras">
-                <?= htmlspecialchars($value['_name']) ?>
+                <?= htmlspecialchars($value['name']) ?>
                 </div>
                 <div>
-                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['_category']) ?>
+                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['category']) ?>
                 </div>
             </div>
             <div class="gras">
-                Prix : <?= htmlspecialchars(number_format($value['_price'], 2))?> €
+                Prix : <?= htmlspecialchars(number_format($value['price'], 2))?> €
             </div>
-            <p><?= htmlspecialchars($value['_description'])?></p>
+            <p><?= htmlspecialchars($value['description'])?></p>
         </div>
         </div>
         
