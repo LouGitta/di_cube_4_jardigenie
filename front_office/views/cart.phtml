@@ -1,0 +1,27 @@
+<h2>Votre panier</h2>
+<?php if(empty($content)) : ?>
+    <p>Votre panier est vide.</p>
+<?php else : ?>
+    <table>
+        <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($contenu as $article) : ?>
+        <tr>
+            <td><?= $article['nom'] ?></td>
+            <td><?= $article['quantite'] ?></td>
+            <td><?= $article['prix'] ?> €</td>
+            <td><?= $article['total'] ?> €</td>
+            <td>
+                <a href="index.php?page=panier&action=supprimer&id=<?= $article['id'] ?>">Supprimer</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <p>Total commande : <?= $total ?> €</p>
+    <a href="index.php?page=validation">Valider la commande</a>
+<?php endif; ?>
