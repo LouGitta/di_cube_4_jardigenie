@@ -60,14 +60,55 @@ if(array_key_exists('route', $_GET)):
             }
             header('location: index.php?route=home');
             exit;
-            break; 
-        
-        case 'nouscontacter' :
-            $controller = new Controllers\PageController();
-            $controller->displayContact();
             break;
-            
-        default:
+
+        case 'users':
+            $controller = new Controllers\UserController();
+            $controller->display();
+            break;
+        
+        case 'addUser':
+
+            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "add") {
+                // Afficher le formulaire
+                $controller = new Controllers\UserController();
+                $controller->displayForm();
+            }else {
+                // Soumettre le formulaire
+                $controller = new Controllers\UserController();
+                $controller->submitForm();
+            }
+            break;
+
+        case 'editUser':
+        
+            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "editUser") {
+                // Afficher le formulaire
+                $controller = new Controllers\UserController();
+                $controller->displayFormEditUser($_GET['id']);
+            }else {
+                // Soumettre le formulaire
+                $controller = new Controllers\UserController();
+                $controller->submitFormEditUser();
+            }
+            break;
+
+        case 'deleteUser':
+                    
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+
+                $controller = new Controllers\UserController();
+                $controller->deleteUser($_GET['id']);
+            }
+            header('location: index.php?route=home');
+            exit;
+            break;
+                    
+        case 'orders':
+            $controller = new Controllers\OrderController();
+            $controller->display();
+            break;
+            default:
             header('Location: index.php?route=home');
             exit;
             break;
