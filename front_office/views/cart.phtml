@@ -1,5 +1,5 @@
 <h2>Votre panier</h2>
-<?php if(empty($content)) : ?>
+<?php if(empty($cart)) : ?>
     <p>Votre panier est vide.</p>
 <?php else : ?>
     <table>
@@ -10,14 +10,14 @@
             <th>Total</th>
             <th>Action</th>
         </tr>
-        <?php foreach($contenu as $article) : ?>
+        <?php foreach($products as $product) : ?>
         <tr>
-            <td><?= $article['nom'] ?></td>
-            <td><?= $article['quantite'] ?></td>
-            <td><?= $article['prix'] ?> €</td>
-            <td><?= $article['total'] ?> €</td>
+            <td><?= $product['nom'] ?></td>
+            <td><?= $product['quantite'] ?></td>
+            <td><?= $product['prix'] ?> €</td>
+            <td><?= $product['total'] ?> €</td>
             <td>
-                <a href="index.php?page=panier&action=supprimer&id=<?= $article['id'] ?>">Supprimer</a>
+                <a href="index.php?page=cart&action=delete&id=<?= $product['id'] ?>">Supprimer</a>
             </td>
         </tr>
         <?php endforeach; ?>

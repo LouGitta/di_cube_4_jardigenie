@@ -28,6 +28,22 @@ if(array_key_exists('route', $_GET)):
             $controller = new Controllers\PageController();
             $controller->displayContact();
             break;
+
+            case 'cart':
+                require_once './controllers/CartController.php';
+                $CartController = new CartController($pdo);
+                $action = $_GET['action'] ?? null;
+                $productId = $_GET['id'] ?? null;
+                $quantite = $_GET['quantite'] ?? 1;
+            
+                if($action == 'ajouter'){
+                    $CartController->add($productId, $quantite);
+                } elseif($action == 'supprimer'){
+                    $CartController->delete($productId);
+                } else {
+                    $CartController->showCart();
+                }
+                break;
             
         default:
             header('Location: index.php?route=home');
