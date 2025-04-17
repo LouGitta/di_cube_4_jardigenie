@@ -1,0 +1,15 @@
+<section>
+<div class="container text-center">
+  <div class="row gap-3">
+    <?php foreach ($listOrders as $value):?> 
+        <div class="card col-3">
+            <div class="card-body">
+                <h5 class="card-title"><?= htmlspecialchars($value['order_id']) ?></h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary"><?= htmlspecialchars($value['order_date']) ?></h6>
+            </div>
+        </div>
+    <?php endforeach; ?> 
+  </div>
+</div>
+
+</section>

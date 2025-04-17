@@ -17,7 +17,12 @@ if(array_key_exists('route', $_GET)):
             $controller = new Controllers\ProductController();
             $controller->display();
             break;
-
+            
+        case 'orders':
+            $controller = new Controllers\OrderController();
+            $controller->display();
+            break;
+            
         case 'byCat':
             $controller = new Controllers\ProductController();
             $controller->displayByCat();
