@@ -1,0 +1,55 @@
+
+<h1>Bienvenue dans votre admin Jardigénie</h1>
+
+<div id="header2">
+    <!-- <form action="index.php?route=byCat" method="POST">
+        <div>
+            <label for="cat-select" class="gras">Sélectionnez une catégorie:</label>
+
+            <select name="cat" id="cat-select">
+                <option value="">--choisissez votre catégorie--</option>
+                <option value="Outils">Outils</option>
+                <option value="Bacs">Bacs</option>
+                <option value="Graines">Graines</option>
+            </select>
+            <input type="submit" class="button" value="OK" />
+        </div>
+
+
+    </form> -->
+    <a href="index.php?route=addUser" class="button">Ajouter un utilisateur</a>
+
+</div>
+
+<section>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Date d'inscription</th>
+      <th scope="col">Administrateur</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($listUsers as $value):?> 
+      <tr class="w-100">
+        <th scope="row"><?= $value['user_id'] ?></th>
+        <td><?= htmlspecialchars($value['first_name'])?></td>
+        <td><?= htmlspecialchars($value['last_name'])?></td>
+        <td><?= htmlspecialchars($value['mail'])?></td>
+        <td><?= htmlspecialchars($value['register_date'])?></td>
+        <td><?= $value['is_admin'] ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-xmark"></i>' ?></td>
+
+        <td><a href="index.php?route=editUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a href="index.php?route=deleteUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+      </tr>
+    <?php endforeach; ?> 
+  </tbody>
+</table>
+</section>
