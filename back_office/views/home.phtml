@@ -23,38 +23,30 @@
 
 <section>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Modifier</th>
+      <th scope="col">Supprimer</th>
 
-<?php foreach ($listProducts as $value):?> 
-
-    
-
-    <div class="products">
-        <div class="flexleft">
-        <img src="public/images/<?= htmlspecialchars($value['image']) ?>" alt="<?= htmlspecialchars($value['name']) ?>">
-        <div class="content-product">
-            <div>
-                <div class="gras">
-                <?= htmlspecialchars($value['name']) ?>
-                </div>
-                <div>
-                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['category']) ?>
-                </div>
-            </div>
-            <div class="gras">
-                Prix : <?= htmlspecialchars(number_format($value['price'], 2))?> €
-            </div>
-            <p><?= htmlspecialchars($value['description'])?></p>
-        </div>
-        </div>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($listProducts as $value):?> 
+      <tr class="w-100">
+        <th scope="row"><?= $value['product_id'] ?></th>
+        <td><?= htmlspecialchars($value['name'])?></td>
+        <td><?= htmlspecialchars($value['category'])?></td>
+        <td><?= htmlspecialchars(number_format($value['price'], 2) .'€')?></td>
         
-        <div class="button-product">
-            <a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Modifier</a>
-            <a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Supprimer</a>
-        </div>
-    </div>
-    <hr>
-    
-      
+        <td><a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
+        <td><a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+      </tr>
     <?php endforeach; ?> 
-
+  </tbody>
+</table>
 </section>
