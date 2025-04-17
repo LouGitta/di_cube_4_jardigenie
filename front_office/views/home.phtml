@@ -1,5 +1,5 @@
 
-<h1>Bienvenue sur Jardigénie</h1>
+<h1>Bienvenue dans votre admin Jardigénie</h1>
 
 <div id="header2">
     <form action="index.php?route=byCat" method="POST">
@@ -17,30 +17,46 @@
 
 
     </form>
+    <a href="index.php?route=addProduct" class="button">Ajouter un produit</a>
 
 </div>
 
 <section>
 
-<div class="container text-center">
-  <div class="row gap-3">
-    <?php foreach ($listProducts as $value):?> 
-        <div class="card col-3">
-            <img class="mx-auto d-block card-img-top rounded" style="height: 200px; width: 200px" src="public/images/<?= htmlspecialchars($value['image']) ?>" alt="<?= htmlspecialchars($value['name']) ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?= htmlspecialchars($value['name']) ?></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Catégorie: <?= htmlspecialchars($value['category']) ?></h6>
-                <p class="card-text"><p><?= htmlspecialchars($value['description'])?></p></p>
+
 
                 <div class="gras">Prix : <?= htmlspecialchars(number_format($value['price'], 2))?> €</div>
                 <!-- <a href="index.php?route=detailProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Voir le détail</a> -->
                 <a href="../index.php?page=cart&action=add&id=<?= $value['product_id'] ?>&quantite=1" class="btn btn-success">Ajouter au panier</a>
+    
 
-
+    <div class="products">
+        <div class="flexleft">
+        <img src="public/images/<?= htmlspecialchars($value['_img']) ?>" alt="<?= htmlspecialchars($value['_name']) ?>">
+        <div class="content-product">
+            <div>
+                <div class="gras">
+                <?= htmlspecialchars($value['_name']) ?>
+                </div>
+                <div>
+                    <span class="gras">Catégorie</span> : <?= htmlspecialchars($value['_category']) ?>
+                </div>
             </div>
+            <div class="gras">
+                Prix : <?= htmlspecialchars(number_format($value['_price'], 2))?> €
+            </div>
+            <p><?= htmlspecialchars($value['_description'])?></p>
         </div>
+        </div>
+        
+        <div class="button-product">
+            <a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Modifier</a>
+            <a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Supprimer</a>
+        </div>
+    </div>
+    <hr>
+    
+      
     <?php endforeach; ?> 
-  </div>
-</div>
 
 </section>
