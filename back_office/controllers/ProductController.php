@@ -60,7 +60,7 @@ class ProductController {
                 'price'         => '',
                 'category'      => '',
                 'description'   => '',
-                'img'           => ''
+                'image'           => ''
         ];
         
 
@@ -85,7 +85,7 @@ class ProductController {
                 'price'         => trim($_POST['price']),
                 'category'      => $_POST['category'],
                 'description'   => $_POST['description'],
-                'img'           => 'noPicture.png'
+                'image'           => 'noPicture.png'
                     ];
         
                 // Vérification de tous les champs
@@ -108,10 +108,10 @@ class ProductController {
                 if (count($errors) == 0) {
          
                     // UPLOADER L'IMAGE
-                    if( isset($_FILES['img']) && $_FILES['img']['name'] !== '' ) {
+                    if( isset($_FILES['image']) && $_FILES['image']['name'] !== '' ) {
                         $dossier = "images";
                         $model = new \Models\Upload();
-                        $newProduct['img'] = $model->upload($_FILES['img'], $dossier, $errors);
+                        $newProduct['image'] = $model->upload($_FILES['image'], $dossier, $errors);
                       
                     }
                     // On enregistre toutes les données sous forme de tableau dans une variable data
@@ -120,7 +120,7 @@ class ProductController {
                                 $newProduct['price'], 
                                 $newProduct['category'], 
                                 $newProduct['description'], 
-                                $newProduct['img']
+                                $newProduct['image']
                     ];
                     
                     $model = new \Models\Products();
@@ -155,16 +155,16 @@ class ProductController {
 
         
         $newProduct = [
-                        'id'            => $artmodif['art_id'],
-                        'name'          => $artmodif['art_name'],
-                        'price'         => $artmodif['art_price'],
-                        'category'      => $artmodif['art_category'],
-                        'description'   => $artmodif['art_description'],
-                        'img'           => $artmodif['art_img']
+                        'id'            => $artmodif['product_id'],
+                        'name'          => $artmodif['name'],
+                        'price'         => $artmodif['price'],
+                        'category'      => $artmodif['category'],
+                        'description'   => $artmodif['description'],
+                        'image'           => $artmodif['image']
             ];
 
         
-        $_SESSION['saveimg']=$artmodif['art_img'];
+        $_SESSION['saveimage']=$artmodif['image'];
         
             // affiche la vue
             $template = "addproduct.phtml";
@@ -195,7 +195,7 @@ class ProductController {
                             'price'         => trim($_POST['price']),
                             'category'      => $_POST['category'],
                             'description'   => $_POST['description'],
-                            'img'           => $_SESSION['saveimg']       
+                            'image'           => $_SESSION['saveimage']       
                 ];
 
 
@@ -220,27 +220,27 @@ class ProductController {
 
                 // On efface l'image du dossier images, à partir du moment où il y avait bien une image.
                 
-                if( isset($_FILES['img']) && $_FILES['img']['name'] !== '' )
+                if( isset($_FILES['image']) && $_FILES['image']['name'] !== '' )
                 {
 
                     
-                    if ($_SESSION['saveimg'] != 'noPicture.png' ) {
-                        unlink('public/images/'.$_SESSION['saveimg']);
+                    if ($_SESSION['saveimage'] != 'noPicture.png' ) {
+                        unlink('public/images/'.$_SESSION['saveimage']);
                     }
                     
                     $dossier = "images";
                     $model = new \Models\Upload();
-                    $newProduct['img'] = $model->upload($_FILES['img'], $dossier, $errors);
+                    $newProduct['image'] = $model->upload($_FILES['image'], $dossier, $errors);
                 }
 
                 
                     // On enregistre toutes les données sous forme de tableau dans une variable data
                     $newData = [
-                        'art_name'          => $newProduct['name'],
-                        'art_price'         => $newProduct['price'], 
-                        'art_category'      => $newProduct['category'], 
-                        'art_description'   => $newProduct['description'], 
-                        'art_img'           => $newProduct['img']
+                        'name'          => $newProduct['name'],
+                        'price'         => $newProduct['price'], 
+                        'category'      => $newProduct['category'], 
+                        'description'   => $newProduct['description'], 
+                        'image'           => $newProduct['image']
                     ];
             
 
@@ -269,11 +269,11 @@ class ProductController {
         $imageName = $model->getImageProductbyId($id); 
 
         // Je supprime l'image de mon dossier dans la mesure où elle ne s'appelle pas "noPicture.png"
-        if($imageName['art_img'] != "noPicture.png") {
-            unlink('public/images/'.$imageName['art_img']); 
+        if($imageName['image'] != "noPicture.png") {
+            unlink('public/images/'.$imageName['image']); 
         }
         
-        $model->deleteProductById('products', 'art_id', $id);
+        $model->deleteProductById('products', 'product_id', $id);
         
 
         

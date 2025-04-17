@@ -1,0 +1,40 @@
+
+<h1>Bienvenue dans votre admin Jardigénie</h1>
+
+<div id="header2">
+    <!-- <form action="index.php?route=byCat" method="POST">
+        <div>
+            <label for="cat-select" class="gras">Sélectionnez une catégorie:</label>
+
+            <select name="cat" id="cat-select">
+                <option value="">--choisissez votre catégorie--</option>
+                <option value="Outils">Outils</option>
+                <option value="Bacs">Bacs</option>
+                <option value="Graines">Graines</option>
+            </select>
+            <input type="submit" class="button" value="OK" />
+        </div>
+
+
+    </form> -->
+</div>
+
+<section>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($listOrders as $value):?> 
+      <tr class="w-100">
+        <th scope="row"><?= $value['order_id'] ?></th>
+        <td><?= htmlspecialchars($value['order_date'])?></td>
+      </tr>
+    <?php endforeach; ?> 
+  </tbody>
+</table>
+</section>
