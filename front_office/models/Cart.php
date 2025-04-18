@@ -1,5 +1,8 @@
 <?php
-class Cart {
+
+namespace Models;
+
+class Cart extends Database{
     public function __construct(){
         if(!isset($_SESSION['cart'])){
             $_SESSION['cart'] = [];
@@ -21,15 +24,18 @@ class Cart {
     }
 
     public function deleteProduct($idProduct){
-        unset($_SESSION['Cart'][$idProduct]);
+        unset($_SESSION['cart'][$idProduct]);
     }
 
+    public function getNumberOfProducts(){
+        return array_sum($_SESSION['cart']);
+    }
     public function getCart(){
         return $_SESSION['cart'];
     }
 
     public function emptyCart(){
-        $_SESSION['Cart'] = [];
+        $_SESSION['cart'] = [];
     }
 }
 ?>

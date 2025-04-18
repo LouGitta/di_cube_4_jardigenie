@@ -1,37 +1,52 @@
 <?php
 
+namespace Controllers;
+
 use Models\Products;
+use Models\Cart;
 
 require_once 'models/Cart.php';
-require_once 'models/Products.php';
+require 'models/Products.php';
 
 class CartController {
-    private $db;
-    private $cart;
-    private $products;
 
-    public function __construct($db){
-        $this->db = $db;
-        $this->cart = new Cart();
-        $this->products = new Products($db);
-    }
-
-    public function add($idProduct, $quantity){
-        $this->cart->addProduct($idProduct, $quantity);
+    public function add(){
+        $model = new \Models\Cart();
+        $model->addProduct($_GET['product_id'], $_GET['quantity']);
         header('Location: index.php?page=cart');
     }
 
     public function delete($idProduct){
-        $this->cart->deleteProduct($idProduct);
+        $model = new \Models\Cart();
+        $model->deleteProduct($idProduct);
         header('Location: index.php?page=cart');
     }
 
-    public function set($idProduct, $quantity){
-        $this->cart->setQuantity($idProduct, $quantity);
+    public function edit($idProduct, $quantity){
+        $model = new \Models\Cart();
+        $model->setQuantity($idProduct, $quantity);
         header('Location: index.php?page=cart');
     }
 
     public function showCart(){
+        $model = new \Models\Cart();
+        $cart = $model->getCart();
+        $product = $model->getNumberOfProducts();
+        $total = 0;
+        foreach ($cart as $key => $value) {
+            $productModel = new \Models\Products();
+            $productInfo = $productModel->getProductById($key);
+            $productInfo['quantite'] = $value;
+            $total += $productInfo['price'] * $value;
+            $productInfo['total'] = $productInfo['price'] * $value;
+        } 
+            
+        include 'views/cart.php';
+    } 
+       
+
+        
+/*     public function showCart(){
         $content = [];
         $total = 0;
         foreach($this->cart->getCart() as $idProduct => $quantity){
@@ -42,6 +57,6 @@ class CartController {
             $content[] = $product;
         }
         include 'views/cart.php';
-    }
+    } */
 }
 ?>
