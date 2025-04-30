@@ -1,27 +1,39 @@
-<h2>Votre panier</h2>
-<?php if(empty($cart)) : ?>
+<h1>Mon Panier</h1>
+
+<?php if (empty($cart)): ?>
     <p>Votre panier est vide.</p>
-<?php else : ?>
-    <table>
-        <tr>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix unitaire</th>
-            <th>Total</th>
-            <th>Action</th>
-        </tr>
-        <?php foreach($products as $product) : ?>
-        <tr>
-            <td><?= $product['nom'] ?></td>
-            <td><?= $product['quantite'] ?></td>
-            <td><?= $product['prix'] ?> €</td>
-            <td><?= $product['total'] ?> €</td>
-            <td>
-                <a href="index.php?page=cart&action=delete&id=<?= $product['id'] ?>">Supprimer</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
+<?php else: ?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($cart as $productId => $quantity): ?>
+                <?php
+                    $productModel = new \Models\Products();
+                    $productInfo = $productModel->getProductById($productId);
+                ?>
+                <tr>
+                    <td><?= htmlspecialchars($productInfo['name']) ?></td>
+                    <td><?= $quantity ?></td>
+                    <td><?= number_format($productInfo['price'], 2) ?> €</td>
+                    <td><?= number_format($productInfo['price'] * $quantity, 2) ?> €</td>
+                    <td>
+                        <a href="index.php?route=cart&action=delete&id=<?= $productId ?>" class="btn btn-danger">Supprimer</a>
+                        <a href="index.php?route=cart&action=edit&id=<?= $productId ?>&quantite=<?= $quantity ?>" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
     </table>
-    <p>Total commande : <?= $total ?> €</p>
-    <a href="index.php?page=validation">Valider la commande</a>
+    <h3>Total : <?= number_format($total, 2) ?> €</h3>
 <?php endif; ?>
+
+<a href="index.php?route=home" class="btn btn-secondary">Retour à la boutique</a>
+<a href="index.php?route=checkout" class="btn btn-primary">Valider le panier</a>

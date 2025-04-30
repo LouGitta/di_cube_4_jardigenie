@@ -98,7 +98,7 @@ if(array_key_exists('route', $_GET)):
 
          case 'addCart':
             $controller = new Controllers\CartController();           
-            $controller->add();
+            $controller->add($_GET['idProduct'], $_GET['quantity']);
             break;
 
         case 'deleteCart':

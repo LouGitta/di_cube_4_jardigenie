@@ -49,9 +49,9 @@ $product = $cart->getNumberOfProducts();
           <li class="nav-item">
             <a href="index.php?page=panier" class="btn btn-outline-light position-relative ms-2">
               <i class="bi bi-cart3"></i>
-              <?php if($numberArticles > 0): ?>
+              <?php if($product > 0): ?>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  <?= $numberArticles ?>
+                  <?= $product ?>
                   <span class="visually-hidden">articles dans le panier</span>
                 </span>
               <?php endif; ?>
