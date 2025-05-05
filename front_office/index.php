@@ -106,10 +106,7 @@ if(array_key_exists('route', $_GET)):
             $controller->delete($_GET['idProduct']);
             break;
 
-        case 'editCart':
-            $controller = new Controllers\CartController();           
-            $controller->edit($_GET['idProduct'], $_GET['quantity']);
-            break;
+            
 
         default:
             header('Location: index.php?route=home');

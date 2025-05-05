@@ -1,51 +1,53 @@
 <?php
-
 namespace Controllers;
 
-use Models\Products;
 use Models\Cart;
-
-require_once 'models/Cart.php';
-require 'models/Products.php';
+use Models\Products;
 
 class CartController {
+    private $cartModel;
+    private $productModel;
 
-    public function add(){
-        $model = new \Models\Cart();
-        $model->addProduct($_GET['product_id'], $_GET['quantity']);
-        header('Location: index.php?route=cart');
+    public function __construct() {
+        $this->cartModel = new Cart();
+        $this->productModel = new Products();
     }
 
-    public function delete($idProduct){
-        $model = new \Models\Cart();
-        $model->deleteProduct($idProduct);
-        header('Location: index.php?route=cart');
-    }
-
-    public function edit($idProduct, $quantity){
-        $model = new \Models\Cart();
-        $model->setQuantity($idProduct, $quantity);
-        header('Location: index.php?route=cart');
-    }
-
-    public function showCart(){
-        $model = new \Models\Cart();
-        $cart = $model->getCart();
+    public function showCart() {
+        $cart = $this->cartModel->getCart();
         $products = [];
         $total = 0;
-    
-        foreach ($cart as $key => $value) {
-            $productModel = new \Models\Products();
-            $productInfo = $productModel->getProductById($key);
-            $productInfo['quantity'] = $value;
-            $productInfo['total'] = $productInfo['price'] * $value;
-            $total += $productInfo['total'];
-            $products[] = $productInfo; // <== On ajoute chaque produit
+
+        foreach ($cart as $productId => $quantity) {
+            $productInfo = $this->productModel->getProductById($productId);
+            if ($productInfo) {
+                $products[] = [
+                    'id' => $productId,
+                    'name' => $productInfo['name'],
+                    'price' => $productInfo['price'],
+                    'quantity' => $quantity,
+                    'total' => $productInfo['price'] * $quantity
+                ];
+                $total += $productInfo['price'] * $quantity;
+            }
         }
-    
-        $template = "views/cart.phtml";
-        include_once 'views/layout.phtml';
+
+       
+    $template = "views/cart.phtml";
+    include_once 'views/layout.phtml';
     }
 
+    public function add($idProduct, $quantity) {
+        $this->cartModel->addProduct($idProduct, $quantity);
+        header('Location: index.php?route=cart');
+        exit;
+    }
+
+    public function delete($idProduct) {
+        $this->cartModel->deleteProduct($idProduct);
+        header('Location: index.php?route=cart');
+        exit;
+    }
 }
-?>
+
+
