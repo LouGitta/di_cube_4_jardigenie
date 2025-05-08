@@ -106,7 +106,10 @@ if(array_key_exists('route', $_GET)):
             $controller->delete($_GET['idProduct']);
             break;
 
-            
+         case 'checkout':
+                $controller = new Controllers\OrderController();
+                $controller->validateOrder();
+                break;    
 
         default:
             header('Location: index.php?route=home');

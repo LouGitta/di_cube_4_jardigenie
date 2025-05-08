@@ -2,6 +2,7 @@
 require_once './models/Cart.php';
 $cart = new \Models\Cart();
 $product = $cart->getCart();
+$totalItems = is_array($product) ? array_sum($product) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -47,12 +48,12 @@ $product = $cart->getCart();
             </li>
           <?php endif; ?>
           <li class="nav-item">
-            <a href="index.php?page=panier" class="btn btn-outline-light position-relative ms-2">
+            <a href="index.php?page=cart" class="btn btn-outline-light position-relative ms-2">
               <i class="bi bi-cart3"></i>
-              <?php if($product > 0): ?>
+              <?php if($totalItems > 0): ?>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  <?= $product ?>
-                  <span class="visually-hidden">articles dans le panier</span>
+                <?= $totalItems ?>
+                <span class="visually-hidden">articles dans le panier</span>
                 </span>
               <?php endif; ?>
             </a>
