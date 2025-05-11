@@ -16,11 +16,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="?route=orders">Commandes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?route=cart">
-                            <i class="bi bi-cart"></i> Panier
-                        </a>
-                    </li>
                     <?php if (isset($_SESSION['user'])): ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
@@ -45,7 +40,7 @@
                     <?php endif; ?> 
                     <li class="nav-item">
                         <a href="?route=cart" class="btn btn-outline-light position-relative ms-2">
-                            <i class="bi bi-cart"></i>
+                            <i class="bi bi-cart">Panier</i>
                             <?php if($totalItems > 0): ?>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 <?= $totalItems ?>
