@@ -7,7 +7,7 @@ use Models\OrderDetails;
 class OrderController {
 
     public function validateOrder() {
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user'])) {
             header('Location: index.php?route=login');
             exit;
         }
@@ -21,8 +21,10 @@ class OrderController {
             header('Location: index.php?route=cart');
             exit;
         }
-
-        $orderId = $orderModel->createOrder($_SESSION['user_id']);
+        
+        $orderModel->createOrder($_SESSION['user']);
+        $order = $orderModel->getOrder($_SESSION['user']);
+        $orderId = $order[0]['order_id'];
 
         foreach ($cart as $productId => $quantity) {
             $orderDetailsModel->addDetail($orderId, $productId, $quantity);
