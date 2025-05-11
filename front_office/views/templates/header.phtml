@@ -29,7 +29,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="?routre=profile">Mon profil</a></li>
                                 <?php if ($_SESSION['user']['is_admin']): ?>
-                                    <li><a class="dropdown-item" href="?routre=dashboard">Administration</a></li>
+                                    <li><a class="dropdown-item" href="?route=dashboard">Administration</a></li>
                                 <?php endif; ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="?route=logout">Déconnexion</a></li>
@@ -42,7 +42,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="?route=register">Inscription</a>
                         </li>
-                    <?php endif; ?>  
+                    <?php endif; ?> 
+                    <li class="nav-item">
+                        <a href="?route=cart" class="btn btn-outline-light position-relative ms-2">
+                            <i class="bi bi-cart"></i>
+                            <?php if($totalItems > 0): ?>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= $totalItems ?>
+                                <span class="visually-hidden">articles dans le panier</span>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
