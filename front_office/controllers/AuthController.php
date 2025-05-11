@@ -107,7 +107,7 @@ class AuthController {
                     'last_name'     => $nom,
                     'mail'          => $email,
                     'password'      => $hashedPassword,
-                    'register_date' => date('Y-M-D'),
+                    'register_date' => date('Y-m-d'),
                     'is_admin'      => 0
                 ];
                 
