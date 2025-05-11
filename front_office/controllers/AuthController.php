@@ -14,14 +14,13 @@ class AuthController {
     
     public function showLoginForm() {
 
-
         $error = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : null;
         
         if(isset($_SESSION['login_error'])) {
             unset($_SESSION['login_error']);
         }
-        
-        include_once 'views/auth/login.phtml';
+        $template = 'auth/login.phtml';
+        include_once 'views/layout.phtml';
     }
     
     public function login() {
@@ -35,11 +34,11 @@ class AuthController {
             
             if($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = [
-                    'id' => $user['user_id'],
-                    'first_name' => $user['first_name'],
-                    'last_name' => $user['last_name'],
-                    'mail' => $user['mail'],
-                    'is_admin' => $user['is_admin']
+                    'id'            => $user['user_id'],
+                    'first_name'    => $user['first_name'],
+                    'last_name'     => $user['last_name'],
+                    'mail'          => $user['mail'],
+                    'is_admin'      => $user['is_admin']
                 ];
                 
                 header('Location: index.php?route=home');
@@ -104,11 +103,12 @@ class AuthController {
                 
                 // Créer utilisateur
                 $userData = [
-                    'first_name' => $prenom,
-                    'last_name' => $nom,
-                    'mail' => $email,
-                    'password' => $hashedPassword,
-                    'is_admin' => 0
+                    'first_name'    => $prenom,
+                    'last_name'     => $nom,
+                    'mail'          => $email,
+                    'password'      => $hashedPassword,
+                    'register_date' => date('Y-M-D'),
+                    'is_admin'      => 0
                 ];
                 
                 $this->userModel->create($userData);
@@ -117,8 +117,8 @@ class AuthController {
                 header('Location: index.php?route=login&registered=success');
                 exit;
             } else {
-               
-                include_once 'views/auth/register.phtml';
+                $template = 'auth/register.phtml';
+                include_once 'views/layout.phtml';
             }
         } else {
             $this->showRegisterForm();
@@ -126,7 +126,8 @@ class AuthController {
     }
     
     public function showRegisterForm() {
-        include_once 'views/auth/register.phtml';
+        $template = 'auth/register.phtml';
+        include_once 'views/layout.phtml';
     }
     
     public function logout() {
