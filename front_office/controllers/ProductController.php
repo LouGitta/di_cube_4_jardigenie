@@ -14,7 +14,7 @@ class ProductController {
         // Affiche la vue
         $template = "home.phtml";
         include_once 'views/layout.phtml';
-                
+        
 
     }
 

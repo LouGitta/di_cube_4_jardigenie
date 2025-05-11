@@ -91,22 +91,26 @@ if(array_key_exists('route', $_GET)):
             $controller->logout();
             break;
 
-            case 'cart':
-                require_once './controllers/CartController.php';
-                $CartController = new CartController($pdo);
-                $action = $_GET['action'] ?? null;
-                $productId = $_GET['id'] ?? null;
-                $quantite = $_GET['quantite'] ?? 1;
-            
-                if($action == 'ajouter'){
-                    $CartController->add($productId, $quantite);
-                } elseif($action == 'supprimer'){
-                    $CartController->delete($productId);
-                } else {
-                    $CartController->showCart();
-                }
-                break;
-            
+        case 'cart':
+            $controller = new Controllers\CartController();           
+            $controller->showCart();
+            break;
+
+         case 'addCart':
+            $controller = new Controllers\CartController();           
+            $controller->add($_GET['idProduct'], $_GET['quantity']);
+            break;
+
+        case 'deleteCart':
+            $controller = new Controllers\CartController();           
+            $controller->delete($_GET['idProduct']);
+            break;
+
+         case 'checkout':
+                $controller = new Controllers\OrderController();
+                $controller->validateOrder();
+                break;    
+
         default:
             header('Location: index.php?route=home');
             exit;
