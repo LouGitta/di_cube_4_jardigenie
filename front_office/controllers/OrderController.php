@@ -6,6 +6,16 @@ use Models\OrderDetails;
 
 class OrderController {
 
+    public function display() {
+
+        $model = new Order();
+        $listOrders = $model->getOrdersByUser($_SESSION['user']['id']);
+
+        // Affiche la vue
+        $template = "orders.phtml";
+        include_once 'views/layout.phtml';
+    }
+
     public function validateOrder() {
         if (!isset($_SESSION['user'])) {
             header('Location: index.php?route=login');
@@ -32,7 +42,7 @@ class OrderController {
 
         $cartModel->emptyCart();
 
-        $template = './views/order.phtml';
+        $template = './views/orderConfirmed.phtml';
         include_once './views/layout.phtml';
     }
 }
