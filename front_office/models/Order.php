@@ -5,12 +5,14 @@ use Models\Database;
 
 class Order extends Database {
 
-    public function createOrder($user) {
+    public function createOrder($user, $numberProduct, $totalPrice) {
         $data= [
             $user['id'],
-            date('Y-m-d')
+            date('Y-m-d'),
+            $numberProduct,
+            $totalPrice
         ];
-        return $this->addOne('orders', 'user_id, order_date', '?, ?', $data);
+        return $this->addOne('orders', 'user_id, order_date, number_product, total_price', '?, ?, ?, ?', $data);
     }
 
     public function getOrder($user) {
