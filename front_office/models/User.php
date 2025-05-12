@@ -9,14 +9,15 @@ class User extends Database {
     }
     
     public function create($userData) {
-        $columns = "first_name, last_name, mail, password, is_admin";
-        $values = "?, ?, ?, ?, ?";
+        $columns = "first_name, last_name, mail, password, is_admin, register_date";
+        $values = "?, ?, ?, ?, ?, ?";
         $data = [
             $userData['first_name'], 
             $userData['last_name'], 
             $userData['mail'], 
             $userData['password'],
-            $userData['is_admin'] ?? 0
+            $userData['is_admin'] ?? 0,
+            $userData['register_date']
         ];
         
         return $this->addOne('users', $columns, $values, $data);
