@@ -1,48 +1,46 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container">
-            <a class="navbar-brand" href="/jardigenie/front_office/">
-                <img src="/jardigenie/front_office/assets/images/logo.png" alt="JardiGenie Logo" height="40">
-                JardiGenie
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="?=home">
+                <img src="/back_office/public/images/logojardigenie" alt="JardiGenie Logo" height="40">
+                JardiGenie Admin
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="d-flex">
+                            <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/jardigenie/front_office/">Accueil</a>
+                    <li class="navbar-text">
+                        <a class="nav-link" href="/di_cube_4_jardigenie/front_office">Site marchand</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/jardigenie/front_office/products">Produits</a>
+                    <li class="navbar-text">
+                        <a class="nav-link" href="index.php">Accueil</a>
                     </li>
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                <?= htmlspecialchars($_SESSION['user']) ?>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/jardigenie/front_office/profile">Mon profil</a></li>
-                                <?php if ($_SESSION['is_admin']): ?>
-                                    <li><a class="dropdown-item" href="/jardigenie/back_office/dashboard">Administration</a></li>
-                                <?php endif; ?>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="/jardigenie/front_office/auth/logout">Déconnexion</a></li>
-                            </ul>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/jardigenie/front_office/auth/login">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/jardigenie/front_office/auth/register">Inscription</a>
-                        </li>
-                    <?php endif; ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/jardigenie/front_office/cart">
-                            <i class="bi bi-cart"></i> Panier
+                    <li class="navbar-text">
+                        <a class="nav-link" href="?route=home">Produits</a>
+                    </li>
+                    <li class="navbar-text">
+                        <a class="nav-link" href="?route=users">
+                            <i class="bi bi-cart"></i> Utilisateurs
                         </a>
                     </li>
+                    <li class="navbar-text">
+                        <a class="nav-link" href="?route=orders">
+                            <i class="bi bi-cart"></i> Commandes
+                        </a>
+                    </li>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="navbar-text">
+                            <a class="nav-link">
+                                <?= $_SESSION['user']['first_name'] ?> <?= $_SESSION['user']['last_name'] ?>
+                            </a>
+                        </li>
+                        <li class="navbar-text">
+                            <a href="index.php?route=logout" class="btn btn-outline-light btn-sm nav-link">Déconnexion</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="navbar-text">
+                            <a href="index.php?route=login" class="btn btn-outline-light btn-sm nav-link">Connexion</a>
+                        </li>
+                    <?php endif; ?> 
                 </ul>
             </div>
         </div>

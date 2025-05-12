@@ -35,11 +35,11 @@ class AuthController {
             
             if($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = [
-                    'id' => $user['user_id'],
-                    'first_name' => $user['first_name'],
-                    'last_name' => $user['last_name'],
-                    'mail' => $user['mail'],
-                    'is_admin' => $user['is_admin']
+                    'id'            => $user['user_id'],
+                    'first_name'    => $user['first_name'],
+                    'last_name'     => $user['last_name'],
+                    'mail'          => $user['mail'],
+                    'is_admin'      => $user['is_admin']
                 ];
                 
                 header('Location: index.php?route=home');

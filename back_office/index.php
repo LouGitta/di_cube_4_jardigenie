@@ -11,7 +11,7 @@ spl_autoload_register(function($class) {                            // $class = 
 // Fonction pour vérifier si l'utilisateur est admin
 function checkAdminAccess() {
     if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
-        header('Location: index.php?route=admin-login');
+        header('Location: index.php?route=login');
         exit;
     }
 }
@@ -21,22 +21,22 @@ if(array_key_exists('route', $_GET)):
     switch ($_GET['route']) {
 
         // Routes d'authentification admin
-        case 'admin-login':
+        case 'login':
             $controller = new Controllers\AdminController();
             $controller->showLoginForm();
             break;
             
-        case 'admin-login-post':
+        case 'login-post':
             $controller = new Controllers\AdminController();
             $controller->login();
             break;
             
-        case 'admin-logout':
+        case 'logout':
             $controller = new Controllers\AdminController();
             $controller->logout();
             break;
             
-        case 'admin-dashboard':
+        case 'dashboard':
             checkAdminAccess(); // Vérifie si l'utilisateur est admin
             $controller = new Controllers\AdminController();
             $controller->showDashboard();
@@ -141,9 +141,9 @@ if(array_key_exists('route', $_GET)):
         default:
             // Si l'utilisateur n'est pas connecté en tant qu'admin, rediriger vers la page de login
             if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
-                header('Location: index.php?route=admin-login');
+                header('Location: index.php?route=login');
             } else {
-                header('Location: index.php?route=admin-dashboard');
+                header('Location: index.php?route=dashboard');
             }
             exit;
             break;
@@ -151,9 +151,9 @@ if(array_key_exists('route', $_GET)):
 else:
     // Si l'utilisateur n'est pas connecté en tant qu'admin, rediriger vers la page de login
     if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
-        header('Location: index.php?route=admin-login');
+        header('Location: index.php?route=login');
     } else {
-        header('Location: index.php?route=admin-dashboard');
+        header('Location: index.php?route=dashboard');
     }
     exit;
 endif;
