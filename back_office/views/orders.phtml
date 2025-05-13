@@ -4,15 +4,17 @@
   <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Id</th>
       <th scope="col">Date</th>
       <th scope="col">Nombre de produits</th>
       <th scope="col">Prix total</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($listOrders as $value):?> 
+    <?php foreach ($listOrders as $index => $value):?> 
       <tr class="w-100">
-        <th scope="row"><?= $value['order_id'] ?></th>
+        <th scope="row"><?= $index +1 ?></th>
+        <td><?= $value['order_id'] ?></td>
         <td><?= htmlspecialchars($value['order_date'])?></td>
         <td><?= htmlspecialchars($value['number_product'])?></td>
         <td><?= htmlspecialchars(number_format($value['total_price'], 2) . '€')?></td>
