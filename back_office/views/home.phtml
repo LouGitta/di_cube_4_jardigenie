@@ -1,51 +1,52 @@
-<h1 class="text-center">Gestion des produits</h1>
+<h1 class="text-center mt-4 mb-4 fw-bold">Gestion des produits</h1>
 
-<div id="header2">
-    <form action="index.php?route=byCat" method="POST">
-        <div>
-            <label for="cat-select" class="gras">Sélectionnez une catégorie:</label>
-
-            <select name="cat" id="cat-select">
-                <option value="">--choisissez votre catégorie--</option>
-                <option value="Outils">Outils</option>
-                <option value="Bacs">Bacs</option>
-                <option value="Graines">Graines</option>
-            </select>
-            <input type="submit" class="button" value="OK" />
+<div class="mt-4">
+  <div class="row g-3 justify-content-start">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <form action="index.php?route=byCat" method="POST" class="bg-light p-2 rounded border">
+        <label for="cat-select" class="form-label fw-bold small">Catégorie :</label>
+        <div class="input-group input-group-sm">
+          <select name="cat" id="cat-select" class="form-select">
+            <option value="">-- catégorie --</option>
+            <option value="Outils">Outils</option>
+            <option value="Bacs">Bacs</option>
+            <option value="Graines">Graines</option>
+          </select>
+          <button type="submit" class="btn btn-primary">OK</button>
         </div>
-
-
-    </form>
-    <a href="index.php?route=addProduct" class="btn btn-primary">Ajouter un produit</a>
-
+      </form>
+    </div>
+  </div>
 </div>
 
-<section>
+<div class="d-flex justify-content-end mb-2">
+  <a href="index.php?route=addProduct" class="btn btn-primary">
+    Ajouter un produit
+  </a>
+</div>
 
-<table class="table">
-  <thead>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Category</th>
-      <th scope="col">Price</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Prix</th>
       <th scope="col">Modifier</th>
       <th scope="col">Supprimer</th>
-
     </tr>
   </thead>
   <tbody>
     <?php foreach ($listProducts as $value):?> 
-      <tr class="w-100">
+      <tr>
         <th scope="row"><?= $value['product_id'] ?></th>
         <td><?= htmlspecialchars($value['name'])?></td>
         <td><?= htmlspecialchars($value['category'])?></td>
         <td><?= htmlspecialchars(number_format($value['price'], 2) .'€')?></td>
         
-        <td><a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
-        <td><a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+        <td><a href="index.php?route=editProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>
+        <td><a href="index.php?route=deleteProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Supprimer</a></td>
       </tr>
     <?php endforeach; ?> 
   </tbody>
 </table>
-</section>

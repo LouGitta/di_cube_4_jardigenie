@@ -1,13 +1,13 @@
+<h1 class="text-center mt-4 mb-4 fw-bold">Gestion des utilisateurs</h1>
 
-<h1 class="text-center">Gestion des utilisateurs</h1>
-<div id="header2">
-    <a href="index.php?route=addUser" class="btn btn-primary">Ajouter un utilisateur</a>
+<div class="d-flex justify-content-end mb-2">
+  <a href="index.php?route=addUser" class="btn btn-primary">
+    Ajouter un utilisateur
+  </a>
 </div>
 
-<section>
-
-<table class="table">
-  <thead>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Prénom</th>
@@ -21,7 +21,7 @@
   </thead>
   <tbody>
     <?php foreach ($listUsers as $value):?> 
-      <tr class="w-100">
+      <tr>
         <th scope="row"><?= $value['user_id'] ?></th>
         <td><?= htmlspecialchars($value['first_name'])?></td>
         <td><?= htmlspecialchars($value['last_name'])?></td>
@@ -29,10 +29,9 @@
         <td><?= htmlspecialchars($value['register_date'])?></td>
         <td><?= $value['is_admin'] ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-solid fa-xmark"></i>' ?></td>
 
-        <td><a href="index.php?route=editUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
-        <td><a href="index.php?route=deleteUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+        <td><a href="index.php?route=editUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>
+        <td><a href="index.php?route=deleteUser&id=<?= htmlspecialchars($value['user_id']) ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Supprimer</a></td>
       </tr>
     <?php endforeach; ?> 
   </tbody>
 </table>
-</section>

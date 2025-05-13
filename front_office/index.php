@@ -9,6 +9,13 @@ spl_autoload_register(function($class) {                            // $class = 
 });
 
 
+function checkLogin() {
+    if (!isset($_SESSION['user'])) {
+        header('Location: index.php?route=login');
+        exit;
+    }
+}
+
 if(array_key_exists('route', $_GET)):
     
     switch ($_GET['route']) {
@@ -69,6 +76,7 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'orders':
+            checkLogin();
             $controller = new Controllers\OrderController();
             $controller->display();
             break;

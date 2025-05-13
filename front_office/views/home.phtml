@@ -1,47 +1,61 @@
+<h1 class="text-center mt-4 mb-5 fw-bold display-5 text-success">
+  <i class="fas fa-seedling me-2"></i>Bienvenue sur Jardigénie
+</h1>
 
-<h1>Bienvenue sur Jardigénie</h1>
-
-<div id="header2">
-    <form action="index.php?route=byCat" method="POST">
-        <div>
-            <label for="cat-select" class="gras">Sélectionnez une catégorie:</label>
-
-            <select name="cat" id="cat-select">
-                <option value="">--choisissez votre catégorie--</option>
-                <option value="Outils">Outils</option>
-                <option value="Bacs">Bacs</option>
-                <option value="Graines">Graines</option>
-            </select>
-            <input type="submit" class="button" value="OK" />
+<div class="mt-4">
+  <div class="row g-3 justify-content-start">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <form action="index.php?route=byCat" method="POST" class="bg-light p-2 rounded border">
+        <label for="cat-select" class="form-label fw-bold small">Catégorie :</label>
+        <div class="input-group input-group-sm">
+          <select name="cat" id="cat-select" class="form-select">
+            <option value="">-- catégorie --</option>
+            <option value="Outils">Outils</option>
+            <option value="Bacs">Bacs</option>
+            <option value="Graines">Graines</option>
+          </select>
+          <button type="submit" class="btn btn-success">OK</button>
         </div>
-
-
-    </form>
-
+      </form>
+    </div>
+  </div>
 </div>
-
-<section>
 
 <div class="text-center mt-2">
   <div class="row">
     <?php foreach ($listProducts as $value):?> 
-        <div class="card col-3">
-            <img class="mx-auto d-block card-img-top rounded" style="height: 200px; width: 200px" src="/di_cube_4_jardigenie/public/images/<?= htmlspecialchars($value['image']) ?>" alt="<?= htmlspecialchars($value['name']) ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?= htmlspecialchars($value['name']) ?></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">Catégorie: <?= htmlspecialchars($value['category']) ?></h6>
-                <p class="card-text"><p><?= htmlspecialchars($value['description'])?></p></p>
-
-                <div class="gras">Prix : <?= htmlspecialchars(number_format($value['price'], 2))?> €</div>
-                <!-- <a href="index.php?route=detailProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Voir le détail</a> -->
-                <a href="index.php?route=addCart&idProduct=<?= $value['product_id'] ?>&quantity=1" class="btn btn-success">Ajouter au panier</a>
-
-
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="card h-100">
+                <img class="mx-auto d-block card-img-top rounded mt-3" 
+                    style="height: 200px; width: 200px; object-fit: cover;" 
+                    src="/di_cube_4_jardigenie/public/images/<?= htmlspecialchars($value['image']) ?>" 
+                    alt="<?= htmlspecialchars($value['name']) ?>"
+                >
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title">
+                            <?= htmlspecialchars($value['name']) ?>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">
+                            Catégorie : <?= htmlspecialchars($value['category']) ?>
+                        </h6>
+                        <p class="card-text">
+                            <?= htmlspecialchars($value['description']) ?>
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="fw-bold mb-2">
+                            Prix : <?= htmlspecialchars(number_format($value['price'], 2)) ?> €
+                        </div>
+                        <!-- <a href="index.php?route=detailProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Voir le détail</a> -->
+                        <a href="index.php?route=addCart&idProduct=<?= $value['product_id'] ?>&quantity=1" class="btn btn-success w-100">
+                            Ajouter au panier
+                        </a>
+                    </div>
+                </div>
 
             </div>
         </div>
     <?php endforeach; ?> 
   </div>
 </div>
-
-</section>

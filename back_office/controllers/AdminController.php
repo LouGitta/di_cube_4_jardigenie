@@ -42,7 +42,14 @@ class AdminController {
             $user = $this->getUserModel()->findByEmail($email);
             
             if($user && password_verify($password, $user['password']) && $user['is_admin'] == 1) {
-                $_SESSION['user'] = $user;
+                $_SESSION['user'] = [
+                    'id'            => $user['user_id'],
+                    'first_name'    => $user['first_name'],
+                    'last_name'     => $user['last_name'],
+                    'mail'          => $user['mail'],
+                    'is_admin'      => $user['is_admin']
+                ];
+                
                 header('Location: index.php?route=dashboard');
                 exit;
             } else {

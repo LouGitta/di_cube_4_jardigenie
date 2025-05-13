@@ -1,9 +1,8 @@
 <div class="container py-4">
     <h1 class="mb-4">Tableau de bord</h1>
     <div class="alert alert-success">
-        <!-- <?php var_dump($_SESSION['user']) ?> -->
         <p>Vous êtes connecté en tant qu'administrateur.</p>
-        <p>ID: <?= $_SESSION['user']['user_id'] ?></p>
+        <p>ID: <?= $_SESSION['user']['id'] ?></p>
         <p>Nom: <?= $_SESSION['user']['first_name'] ?> <?= $_SESSION['user']['last_name'] ?></p>
         <p>Email: <?= $_SESSION['user']['mail'] ?></p>
     </div>
