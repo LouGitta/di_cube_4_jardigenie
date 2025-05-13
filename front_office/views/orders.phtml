@@ -1,0 +1,14 @@
+<section>
+    <div class="container row text-center mt-2">
+        <?php foreach ($listOrders as $value): ?> 
+            <div class="card col-3 mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Commande n° <?= htmlspecialchars($value['order_id'] ?? '') ?></h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Date : <?= htmlspecialchars($value['order_date'] ?? '') ?></h6>
+                    <p class="card-text">Produits commandés : <?= htmlspecialchars($value['number_product'] ?? '0') ?></p>
+                    <p class="card-text">Total : <?= htmlspecialchars(number_format($value['total_price'] ?? 0, 2, ',', ' ')) ?> €</p>
+                </div>
+            </div>
+        <?php endforeach; ?> 
+    </div>
+</section>

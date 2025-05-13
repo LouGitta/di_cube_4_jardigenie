@@ -1,12 +1,14 @@
-INSERT INTO Products (name, price, description, image, category)
-VALUES 
-('Sécateur ProCut', 19.90, 'Sécateur ergonomique pour la taille des arbustes et des fleurs.', '', 'Outils de jardin'),
-('Pelle de Jardin MaxiGrip', 24.50, 'Pelle en acier inoxydable avec manche antidérapant.', '', 'Outils de jardin'),
-('Rosier Grimpant Rouge Passion', 15.00, 'Rosier grimpant à grandes fleurs rouges éclatantes.', '', 'Plantes'),
-('Gants de Jardinage Floralis', 9.99, 'Gants résistants et confortables pour tous travaux de jardin.', '', 'Accessoires'),
-('Engrais Universel BioGrow 5kg', 29.90, 'Engrais naturel pour toutes plantes du jardin.', '', 'Produits pour plantes'),
-('Arrosoir Vert 10L', 12.50, 'Arrosoir en plastique résistant avec poignée ergonomique.', '', 'Accessoires'),
-('Graines de Tomate Cœur de Bœuf', 3.90, 'Sachet de graines de tomate cœur de bœuf pour potager.', '', 'Graines et semences'),
-('Tondeuse Électrique GreenLine 1800W', 189.00, 'Tondeuse pour pelouse avec bac de ramassage 50L.', 'tondeuse_greenline.jpg', 'Outils de jardin'),
-('Bambou Lucky Bamboo', 7.50, 'Plante décorative idéale pour intérieur et terrasses.', '', 'Plantes'),
-('Serre de Jardin Compacte 2m²', 249.00, 'Serre en aluminium et polycarbonate pour cultures.', '', 'Équipements');
+INSERT INTO products (name, price, description, image, category) VALUES
+-- Outils
+('Pelle de jardin ergonomique', 14.99, 'Une pelle légère et résistante idéale pour les petits travaux de jardinage.', '', 'Outils'),
+('Sécateur professionnel', 24.50, 'Sécateur en acier inoxydable avec poignées confortables.', '', 'Outils'),
+('Griffe à fleurs 3 dents', 9.75, 'Outil pratique pour aérer le sol autour des plantes.', '', 'Outils'),
+-- Bacs
+('Bac de culture en géotextile 50L', 18.00, 'Bac en tissu respirant pour une meilleure aération des racines.', '', 'Bacs'),
+('Bac de plantation en bois 80x40x30cm', 45.90, 'Bac en pin traité pour les plantations extérieures.', '', 'Bacs'),
+('Mini serre avec bacs intégrés', 59.99, 'Petite serre idéale pour débuter vos semis en intérieur.', '', 'Bacs'),
+-- Graines
+('Graines de tomates cerises bio', 3.20, 'Sachet de graines issues de l’agriculture biologique.', '', 'Graines'),
+('Graines de basilic', 2.80, 'Idéal pour ajouter une touche de fraîcheur à vos plats.', '', 'Graines'),
+('Graines de radis rose', 2.50, 'Croissance rapide, parfait pour les potagers débutants.', '', 'Graines'),
+('Graines de carottes nantaises', 3.00, 'Variété douce et sucrée, très populaire en jardinage.', '', 'Graines');

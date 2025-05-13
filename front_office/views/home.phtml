@@ -22,8 +22,8 @@
 
 <section>
 
-<div class="container text-center">
-  <div class="row gap-3">
+<div class="text-center mt-2">
+  <div class="row">
     <?php foreach ($listProducts as $value):?> 
         <div class="card col-3">
             <img class="mx-auto d-block card-img-top rounded" style="height: 200px; width: 200px" src="public/images/<?= htmlspecialchars($value['image']) ?>" alt="<?= htmlspecialchars($value['name']) ?>">
@@ -34,7 +34,8 @@
 
                 <div class="gras">Prix : <?= htmlspecialchars(number_format($value['price'], 2))?> €</div>
                 <!-- <a href="index.php?route=detailProduct&id=<?= htmlspecialchars($value['product_id']) ?>" class="button">Voir le détail</a> -->
-                <a href="../index.php?page=cart&action=add&id=<?= $value['product_id'] ?>&quantite=1" class="btn btn-success">Ajouter au panier</a>
+                <a href="index.php?route=addCart&idProduct=<?= $value['product_id'] ?>&quantity=1" class="btn btn-success">Ajouter au panier</a>
+
 
 
             </div>
