@@ -1,42 +1,46 @@
-        
-        
-        <fieldset id='addProduct'>
-            <legend>Ajout d'un nouveau produit</legend>
-            <form enctype="multipart/form-data" class="user-form" method="POST" action="<?=htmlspecialchars($route)?>">
-                <br>
-                <label for="name">Nom du produit</label>
-                <input type="text" name="name" value='<?= htmlspecialchars($newProduct['name']) ?>'>
-                <br><br>
-                <label for="price">Prix</label>
-                <input type="number" name="price" step="0.01" min="0" max="100000" value='<?= htmlspecialchars($newProduct['price']) ?>'>
-                <br><br>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Ajout d’un nouveau produit</h5>
+    </div>
+    <div class="card-body">
+      <form enctype="multipart/form-data" method="POST" action="<?= htmlspecialchars($route) ?>">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nom du produit</label>
+          <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($newProduct['name']) ?>">
+        </div>
 
-                <label for="category">Catégorie</label>
-                <select name="category">
-                    <option value="<?= htmlspecialchars($newProduct['category']) ?>"><?= htmlspecialchars($newProduct['category']) ?></option>
-                    <option value="Outils">Outils</option>
-                    <option value="Bacs">Bacs</option>
-                    <option value="Graines">Graines</option>
-                </select>
-                <br><br>
-                <label for="description">Decription</label>
-                <textarea name="description"><?= htmlspecialchars($newProduct['description']) ?></textarea>
-                <br><br>
+        <div class="mb-3">
+          <label for="price" class="form-label">Prix</label>
+          <input type="number" class="form-control" name="price" id="price" step="0.01" min="0" max="100000" value="<?= htmlspecialchars($newProduct['price']) ?>">
+        </div>
 
-                <label for="image">Image</label>
-                <input type="file" accept="image/*" name="image">
-                <br><br>
-                
-                <br><br>
-                <button type="submit" name="submit" class='button'>Valider</button>
-            </form>   
-        </fieldset>
-        
-        <?php include_once('views/errors.phtml'); ?>  
+        <div class="mb-3">
+          <label for="category" class="form-label">Catégorie</label>
+          <select class="form-select" name="category" id="category">
+            <option value="<?= htmlspecialchars($newProduct['category']) ?>" selected><?= htmlspecialchars($newProduct['category']) ?></option>
+            <option value="Outils">Outils</option>
+            <option value="Bacs">Bacs</option>
+            <option value="Graines">Graines</option>
+          </select>
+        </div>
 
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" name="description" id="description" rows="4"><?= htmlspecialchars($newProduct['description']) ?></textarea>
+        </div>
 
-        
-        
+        <div class="mb-4">
+          <label for="image" class="form-label">Image</label>
+          <input class="form-control" type="file" accept="image/*" name="image" id="image">
+        </div>
 
-    
+        <div class="d-grid">
+          <button type="submit" name="submit" class="btn btn-success">Valider</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
+  <?php include_once('views/errors.phtml'); ?>
+</div>
