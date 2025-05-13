@@ -23,44 +23,6 @@ if(array_key_exists('route', $_GET)):
             $controller->displayByCat();
             break;
 
-        case 'addProduct':
-            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "add") {
-                // Afficher le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->displayForm();
-            }else {
-                // Soumettre le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->submitForm();
-            }
-            break;
-
-        case 'editProduct':
-            if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "editProduct") {
-                // Afficher le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->displayFormEditProduct($_GET['id']);
-            }else {
-                // Soumettre le formulaire
-                $controller = new Controllers\ProductController();
-                $controller->submitFormEditProduct();
-            }
-            break;
-
-        case 'deleteProduct':
-            if(isset($_GET['id']) && $_GET['id'] > 0) {
-                $controller = new Controllers\ProductController();
-                $controller->deleteProduct($_GET['id']);
-            }
-            header('location: index.php?route=home');
-            exit;
-            break; 
-        
-        case 'nouscontacter':
-          //  $controller = new Controllers\PageController();
-            // $controller->displayContact();
-            // break;
-            
         // Routes pour l'authentification
         case 'login':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,22 +53,31 @@ if(array_key_exists('route', $_GET)):
             $controller->logout();
             break;
 
-            case 'cart':
-                require_once './controllers/CartController.php';
-                $CartController = new CartController($pdo);
-                $action = $_GET['action'] ?? null;
-                $productId = $_GET['id'] ?? null;
-                $quantite = $_GET['quantite'] ?? 1;
-            
-                if($action == 'ajouter'){
-                    $CartController->add($productId, $quantite);
-                } elseif($action == 'supprimer'){
-                    $CartController->delete($productId);
-                } else {
-                    $CartController->showCart();
-                }
-                break;
-            
+        case 'cart':
+            $controller = new Controllers\CartController();           
+            $controller->showCart();
+            break;
+
+         case 'addCart':
+            $controller = new Controllers\CartController();           
+            $controller->add($_GET['idProduct'], $_GET['quantity']);
+            break;
+
+        case 'deleteCart':
+            $controller = new Controllers\CartController();           
+            $controller->delete($_GET['idProduct']);
+            break;
+
+        case 'orders':
+            $controller = new Controllers\OrderController();
+            $controller->display();
+            break;
+
+        case 'checkout':
+            $controller = new Controllers\OrderController();
+            $controller->validateOrder();
+            break;
+
         default:
             header('Location: index.php?route=home');
             exit;

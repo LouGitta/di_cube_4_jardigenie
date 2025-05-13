@@ -21,6 +21,8 @@ CREATE TABLE orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY, -- Clé primaire
     user_id INT,
     order_date DATE,
+    number_product INT,
+    total_price DECIMAL(10,2),
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
@@ -33,3 +35,7 @@ CREATE TABLE order_details (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
+ALTER TABLE orders 
+ADD number_product INT,
+ADD total_price DECIMAL(10,2);
