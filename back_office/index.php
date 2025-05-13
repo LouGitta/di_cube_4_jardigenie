@@ -128,7 +128,7 @@ if(array_key_exists('route', $_GET)):
                 $controller = new Controllers\UserController();
                 $controller->deleteUser($_GET['id']);
             }
-            header('location: index.php?route=home');
+            header('location: index.php?route=users');
             exit;
             break;
                     
