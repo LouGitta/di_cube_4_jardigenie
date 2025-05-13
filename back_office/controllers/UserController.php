@@ -123,7 +123,7 @@ class UserController {
                     
         
                     //retour sur la home après ajout d'un nouvel user
-                    header('Location: index.php');
+                    header('Location: index.php?route=users');
                     exit();
                     
                     
@@ -220,7 +220,7 @@ class UserController {
                 $model = new \Models\User();
                 $model->updateUserById($newData, $_GET['id']);
               
-                header('Location: index.php');
+                header('Location: index.php?route=users');
                 exit();
             }
     

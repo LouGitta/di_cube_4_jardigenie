@@ -154,48 +154,39 @@ class ProductController {
 
         
         $newProduct = [
-                        'id'            => $artmodif['product_id'],
-                        'name'          => $artmodif['name'],
-                        'price'         => $artmodif['price'],
-                        'category'      => $artmodif['category'],
-                        'description'   => $artmodif['description'],
-                        'image'           => $artmodif['image']
-            ];
-
+            'id'            => $artmodif['product_id'],
+            'name'          => $artmodif['name'],
+            'price'         => $artmodif['price'],
+            'category'      => $artmodif['category'],
+            'description'   => $artmodif['description'],
+            'image'         => $artmodif['image']
+        ];
         
         $_SESSION['saveimage']=$artmodif['image'];
         
             // affiche la vue
             $template = "addproduct.phtml";
             include_once 'views/layout.phtml';       
-    
-    
+        
     }
-
 
     //Sousmission des modification de l'product + retour sur l'accueil
     public function submitFormEditProduct() {
 
-
         $route = 'index.php?route=editProduct&ref=editProduct&id='.$_GET['id'];
         $errors=[];
                 
-        if ( isset( $_POST['name'] ) && 
-            isset( $_POST['price'] ) && 
-            
-            isset( $_POST['category'] ) && 
-            isset( $_POST['description'] )) {
-                
-
+        if ( isset( $_POST['name'] ) && isset( $_POST['price'] ) && 
+            isset( $_POST['category'] ) && isset( $_POST['description'] )) {
 
             $newProduct = [
-                            'id'            => $_GET['id'],
-                            'name'          => $_POST['name'],
-                            'price'         => trim($_POST['price']),
-                            'category'      => $_POST['category'],
-                            'description'   => $_POST['description'],
-                            'image'           => $_SESSION['saveimage']       
-                ];
+                'id'            => $_GET['id'],
+                'name'          => $_POST['name'],
+                'price'         => trim($_POST['price']),
+                'category'      => $_POST['category'],
+                'description'   => $_POST['description'],
+                'image'         => $_SESSION['saveimage']       
+            ];
 
 
             // Vérification de tous les champs
@@ -218,11 +209,9 @@ class ProductController {
             if (count($errors) == 0) {
 
                 // On efface l'image du dossier images, à partir du moment où il y avait bien une image.
-                
                 if( isset($_FILES['image']) && $_FILES['image']['name'] !== '' )
                 {
 
-                    
                     if ($_SESSION['saveimage'] != 'noPicture.png' ) {
                         unlink('public/images/'.$_SESSION['saveimage']);
                     }
@@ -232,28 +221,23 @@ class ProductController {
                     $newProduct['image'] = $model->upload($_FILES['image'], $dossier, $errors);
                 }
 
-                
                     // On enregistre toutes les données sous forme de tableau dans une variable data
                     $newData = [
                         'name'          => $newProduct['name'],
                         'price'         => $newProduct['price'], 
                         'category'      => $newProduct['category'], 
                         'description'   => $newProduct['description'], 
-                        'image'           => $newProduct['image']
+                        'image'         => $newProduct['image']
                     ];
             
 
                 
                 $model = new \Models\Products();
                 $model->updateProductById($newData, $_GET['id']);
-              
-               
-               
-
-                header('Location: index.php');
+            
+                header('Location: ?route=home');
                 exit();
                
-
             }
     
         }
