@@ -18,7 +18,7 @@ CREATE TABLE products (
 );
 
 CREATE TABLE orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY, -- Clé primaire
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
     order_date DATE,
     number_product INT,
@@ -35,7 +35,3 @@ CREATE TABLE order_details (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
-ALTER TABLE orders 
-ADD number_product INT,
-ADD total_price DECIMAL(10,2);
