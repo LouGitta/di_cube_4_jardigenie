@@ -108,7 +108,7 @@ class ProductController {
          
                     // UPLOADER L'IMAGE
                     if( isset($_FILES['image']) && $_FILES['image']['name'] !== '' ) {
-                        $dossier = "/public/images";
+                        $dossier = "images";
                         $model = new \Models\Upload();
                         $newProduct['image'] = $model->upload($_FILES['image'], $dossier, $errors);
                       

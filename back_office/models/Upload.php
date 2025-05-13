@@ -3,7 +3,8 @@
 namespace Models;
 
 
-const UPLOADS_DIR = 'public/'; // @var UPLOADS_DIR Répertoire ou seront uploadés les fichiers
+const UPLOADS_DIR = __DIR__ . '/../../public/';
+
 /**
  * @var FILE_EXT_IMG  extensions acceptées pour les images
  */
