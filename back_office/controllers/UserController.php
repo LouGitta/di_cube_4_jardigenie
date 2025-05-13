@@ -8,7 +8,7 @@ class UserController {
         // Afficher la page d'accueil
         // Il nous faut récupérer la liste de tous les users depuis la BDD
 
-        $model = new \Models\Users();
+        $model = new \Models\User();
         $listUsers = $model->getAllUsers();
 
         // Affiche la vue
@@ -33,7 +33,7 @@ class UserController {
             } else {
 
                 // Il nous faut récupérer la liste de tous les users par CATEGORIE depuis la BDD en passant le parametre venu du formulaire
-                $model = new \Models\Users();
+                $model = new \Models\User();
                 $listUsers = $model->getUsersByCat($_POST['cat']);
 
                 // Affiche la vue
@@ -101,23 +101,24 @@ class UserController {
                 }
 
                 if ( strlen($newUser['password']) < 3) {
+                    
                     $errors[] = "Veuillez saisir une password de plus de 2 lettres";
                 }
              
                 if (count($errors) == 0) {
-         
+                    $hashedPassword = password_hash($newUser['password'], PASSWORD_DEFAULT);
                     
                     // On enregistre toutes les données sous forme de tableau dans une variable data
                     $data = [
                                 $newUser['first_name'],
                                 $newUser['last_name'],
                                 $newUser['mail'],
-                                $newUser['password'],
+                                $hashedPassword,
                                 $newUser['register_date'],
                                 $newUser['is_admin']
                     ];
                     
-                    $model = new \Models\Users();
+                    $model = new \Models\User();
                     $model->addNewUser($data);
                     
         
@@ -144,7 +145,7 @@ class UserController {
         $route = 'index.php?route=editUser&ref=editUser&id='.$id;
         
         //récupération de l'user à modifier
-        $model = new \Models\Users();
+        $model = new \Models\User();
         $usermodif = $model->getUserById($id);
 
         
@@ -216,7 +217,7 @@ class UserController {
                     'is_admin'      => $newUser['is_admin']
                 ];
             
-                $model = new \Models\Users();
+                $model = new \Models\User();
                 $model->updateUserById($newData, $_GET['id']);
               
                 header('Location: index.php');
@@ -231,7 +232,7 @@ class UserController {
     //Supression d'un user
     public function deleteUser($id) {
 
-        $model = new \Models\Users();      
+        $model = new \Models\User();      
         $model->deleteUserById('users', 'user_id', $id);
         
     }

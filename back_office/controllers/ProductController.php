@@ -79,13 +79,12 @@ class ProductController {
         if(array_key_exists('name', $_POST) && array_key_exists('price', $_POST) && 
             array_key_exists('category', $_POST) && array_key_exists('description', $_POST)) {
                 
-    
             $newProduct = [
                 'name'          => $_POST['name'],
                 'price'         => trim($_POST['price']),
                 'category'      => $_POST['category'],
                 'description'   => $_POST['description'],
-                'image'           => 'noPicture.png'
+                'image'         => $_FILES['image']['name']
                     ];
         
                 // Vérification de tous les champs
@@ -128,7 +127,7 @@ class ProductController {
                     
         
                     //retour sur la home après ajout d'un nouvel product
-                    header('Location: index.php');
+                    header('Location: index.php/?route=home');
                     exit();
                     
                     

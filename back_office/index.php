@@ -8,24 +8,54 @@ spl_autoload_register(function($class) {                            // $class = 
     require_once lcfirst(str_replace('\\','/', $class)) . '.php';   // require_once controllers/ProductController.php
 });
 
+// Fonction pour vérifier si l'utilisateur est admin
+function checkAdminAccess() {
+    if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
+        header('Location: index.php?route=login');
+        exit;
+    }
+}
 
 if(array_key_exists('route', $_GET)):
     
     switch ($_GET['route']) {
 
+        // Routes d'authentification admin
+        case 'login':
+            $controller = new Controllers\AdminController();
+            $controller->showLoginForm();
+            break;
+            
+        case 'login-post':
+            $controller = new Controllers\AdminController();
+            $controller->login();
+            break;
+            
+        case 'logout':
+            $controller = new Controllers\AdminController();
+            $controller->logout();
+            break;
+            
+        case 'dashboard':
+            checkAdminAccess(); // Vérifie si l'utilisateur est admin
+            $controller = new Controllers\AdminController();
+            $controller->showDashboard();
+            break;
+
         case 'home':
+            checkAdminAccess(); // Ajouter cette vérification sur toutes les routes admin
             $controller = new Controllers\ProductController();
             $controller->display();
             break;
 
         case 'byCat':
-
+            checkAdminAccess();
             $controller = new Controllers\ProductController();
             $controller->displayByCat();
             break;
 
         case 'addProduct':
-
+            checkAdminAccess();
             if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "add") {
                 // Afficher le formulaire
                 $controller = new Controllers\ProductController();
@@ -38,7 +68,7 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'editProduct':
-        
+            checkAdminAccess();
             if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "editProduct") {
                 // Afficher le formulaire
                 $controller = new Controllers\ProductController();
@@ -50,11 +80,9 @@ if(array_key_exists('route', $_GET)):
             }
             break;
 
-
         case 'deleteProduct':
-                        
+            checkAdminAccess();           
             if(isset($_GET['id']) && $_GET['id'] > 0) {
-
                 $controller = new Controllers\ProductController();
                 $controller->deleteProduct($_GET['id']);
             }
@@ -63,12 +91,13 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'users':
+            checkAdminAccess();
             $controller = new Controllers\UserController();
             $controller->display();
             break;
         
         case 'addUser':
-
+            checkAdminAccess();
             if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "add") {
                 // Afficher le formulaire
                 $controller = new Controllers\UserController();
@@ -81,7 +110,7 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'editUser':
-        
+            checkAdminAccess();
             if(!array_key_exists('ref', $_GET) || $_GET['ref'] != "editUser") {
                 // Afficher le formulaire
                 $controller = new Controllers\UserController();
@@ -94,9 +123,8 @@ if(array_key_exists('route', $_GET)):
             break;
 
         case 'deleteUser':
-                    
+            checkAdminAccess();
             if(isset($_GET['id']) && $_GET['id'] > 0) {
-
                 $controller = new Controllers\UserController();
                 $controller->deleteUser($_GET['id']);
             }
@@ -105,17 +133,27 @@ if(array_key_exists('route', $_GET)):
             break;
                     
         case 'orders':
+            checkAdminAccess();
             $controller = new Controllers\OrderController();
             $controller->display();
             break;
-            default:
-            header('Location: index.php?route=home');
+            
+        default:
+            // Si l'utilisateur n'est pas connecté en tant qu'admin, rediriger vers la page de login
+            if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
+                header('Location: index.php?route=login');
+            } else {
+                header('Location: index.php?route=dashboard');
+            }
             exit;
             break;
-    }
-    
-
+    } 
 else:
-    header('Location: index.php?route=home');
+    // Si l'utilisateur n'est pas connecté en tant qu'admin, rediriger vers la page de login
+    if (!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1) {
+        header('Location: index.php?route=login');
+    } else {
+        header('Location: index.php?route=dashboard');
+    }
     exit;
 endif;
