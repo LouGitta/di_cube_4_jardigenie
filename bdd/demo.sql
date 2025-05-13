@@ -1,13 +1,16 @@
-INSERT INTO Products (name, price, description, image, category)
-VALUES 
--- Outils de jardin
-('Brouette ProSteel 120L', 89.00, 'Brouette robuste en acier galvanisé, idéale pour transporter terre et déchets verts.', 'brouette.jpg', 'Outils de jardin'),
-('Pulvérisateur GardenSpray 5L', 34.90, 'Pulvérisateur à pression pour traitement phytosanitaire ou arrosage ciblé.', 'pulverisateur.jpg', 'Outils de jardin'),
-('Taille-haie Électrique SharpCut 600W', 79.00, 'Taille-haie puissant avec lame double action pour une coupe nette.', 'taillehaie.jpg', 'Outils de jardin'),
+INSERT INTO products (name, price, description, image, category) VALUES
+-- Outils
+('Brouette renforcée', 89.99, 'Brouette à châssis renforcé, idéale pour transporter de lourdes charges dans le jardin.', 'brouette.jpg', 'Outils'),
+('Pulvérisateur à pression 5L', 29.50, 'Pulvérisateur manuel pour traitements phytosanitaires ou arrosage léger.', 'pulverisateur.jpg', 'Outils'),
+('Taille-haie électrique 600W', 74.90, 'Taille-haie léger et maniable, parfait pour les haies de taille moyenne.', 'taillehaie.jpg', 'Outils'),
+('Tondeuse thermique 150cc', 199.00, 'Tondeuse puissante à moteur thermique, convient aux grandes surfaces de pelouse.', 'tondeuse.jpg', 'Outils'),
 
--- Produits pour plantes
-('Composteur ÉcoGarden 300L', 59.90, 'Composteur en plastique recyclé pour transformer les déchets organiques en engrais.', 'composteur.jpg', 'Produits pour plantes'),
-('Graines de Gazon Résistant', 14.50, 'Mélange de graines de gazon adapté aux zones piétinées et ensoleillées.', 'grainesgazon.jpg', 'Produits pour plantes'),
+-- Bacs
+('Bac à compost 300L', 59.99, 'Bac à compost robuste et ventilé pour transformer vos déchets verts en engrais naturel.', 'composteur.jpg', 'Bacs'),
+('Bac de plantation rectangulaire 100L', 39.90, 'Bac en plastique recyclé, idéal pour les cultures urbaines ou les balcons.', 'composteur.jpg', 'Bacs'),
+('Bac à réserve d’eau 80L', 45.00, 'Bac auto-arrosant pour plantes nécessitant un arrosage régulier.', 'composteur.jpg', 'Bacs'),
 
--- Plantes
-('Tondeuse Ornementale Japonaise', 39.00, 'Plante couvre-sol décorative rappelant une pelouse miniature, idéale pour les jardins zen.', 'tondeuse.jpg', 'Plantes');
+-- Graines
+('Graines de gazon rustique 1kg', 12.50, 'Mélange de graines idéal pour terrains piétinés et zones ensoleillées ou mi-ombre.', 'grainesgazon.jpg', 'Graines'),
+('Graines de tomates anciennes', 3.20, 'Sachet de graines de variétés anciennes de tomates savoureuses.', 'grainesgazon.jpg', 'Graines'),
+('Graines de carottes bio', 2.90, 'Semences issues de l’agriculture biologique pour une culture saine et durable.', 'grainesgazon.jpg', 'Graines');
