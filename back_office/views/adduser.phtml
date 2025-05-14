@@ -4,6 +4,7 @@
       <h5 class="mb-0">Ajout d’un nouvel utilisateur</h5>
     </div>
     <div class="card-body">
+      <?php include_once('views/errors.phtml'); ?>
       <form enctype="multipart/form-data" method="POST" action="<?= htmlspecialchars($route) ?>">
         <div class="mb-3">
           <label for="first_name" class="form-label">Prénom</label>
@@ -38,6 +39,4 @@
       </form>
     </div>
   </div>
-
-  <?php include_once('views/errors.phtml'); ?>
 </div>
