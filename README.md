@@ -33,17 +33,24 @@ Ce projet propose un **front** et un **back office** prêt à l’emploi grâce 
 
 ## Installation
 
-1. **Clone le projet** :
+1. **Importe la base de données** :
+    - Accède à phpMyAdmin via Wamp (**assure-toi que le port utilisé est bien `3306`**).
+    - Crée une nouvelle base de données et appelle la jardigenie
+    - Sélectionne cette base puis clique sur l’onglet **Importer**.
+    - Clique sur **Choisir un fichier** puis sélectionne le fichier `bdd.sql` dans le dossier `bdd` à la racine du projet.
+    - Clique sur **Exécuter** pour lancer l’import.
+    - Vérifie que toutes les tables et données nécessaires sont bien présentes.
+2. **Clone le projet** :
     ```bash
     git clone https://github.com/LouGitta/di_cube_4_jardigenie.git
     cd di_cube_4_jardigenie
     ```
-2. **Construis et lance les conteneurs** :
+3. **Construis et lance les conteneurs** :
     ```bash
     docker build -t jardigenie .
     docker run -d -p 8080:80 --name conteneur-jardigenie jardigenie
     ```
-3. **Accède à l'application** :  
+4. **Accède à l'application** :  
     Ouvre [http://localhost:8080](http://localhost:8080) dans ton navigateur.
 
 ---
