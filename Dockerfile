@@ -31,7 +31,7 @@ RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/front_office
 RUN ln -s /var/www/html/public/images /var/www/html/front_office/images
 RUN ln -s /var/www/html/public/images /var/www/html/back_office/images
 RUN ln -s /var/www/html/back_office /var/www/html/front_office/back_office
-RUN ln -s /var/www/html/front_office /var/www/html/back_office/front_office
+#RUN ln -s /var/www/html/front_office /var/www/html/back_office/front_office
 # Expose port 80
 EXPOSE 80
 
