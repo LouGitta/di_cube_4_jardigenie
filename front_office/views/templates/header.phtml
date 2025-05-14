@@ -21,7 +21,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <?= htmlspecialchars($_SESSION['user']['first_name']) ?>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-menu-end bg-white">
                                 <li><a class="dropdown-item" href="?route=profile">Mon profil</a></li>
                                 <?php if ($_SESSION['user']['is_admin'] == 1): ?>
                                     <li><a class="dropdown-item" href="/di_cube_4_jardigenie/back_office/">Administration</a></li>
@@ -43,8 +43,8 @@
                             <i class="bi bi-cart3"></i>
                             <?php if($totalItems > 0): ?>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?= $totalItems ?>
-                                <span class="visually-hidden">articles dans le panier</span>
+                                    <?= $totalItems ?>
+                                    <span class="visually-hidden">articles dans le panier</span>
                                 </span>
                             <?php endif; ?>
                         </a>

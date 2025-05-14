@@ -5,39 +5,41 @@
                 <img src="/di_cube_4_jardigenie/public/images/logojardigenie" alt="JardiGenie Logo" height="40">
                 Jardigénie Admin
             </a>
-            <div class="d-flex">
-                            <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="navbar-text">
-                        <a class="nav-link" href="/di_cube_4_jardigenie/front_office">Site marchand</a>
-                    </li>
-                    <li class="navbar-text">
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php">Tableau de bord</a>
                     </li>
-                    <li class="navbar-text">
+                    <li class="nav-item">
                         <a class="nav-link" href="?route=home">Produits</a>
                     </li>
-                    <li class="navbar-text">
+                    <li class="nav-item">
                         <a class="nav-link" href="?route=users">
                             <i class="bi bi-cart"></i> Utilisateurs
                         </a>
                     </li>
-                    <li class="navbar-text">
+                    <li class="nav-item">
                         <a class="nav-link" href="?route=orders">
                             <i class="bi bi-cart"></i> Commandes
                         </a>
                     </li>
                     <?php if (isset($_SESSION['user'])): ?>
-                        <li class="navbar-text">
-                            <a class="nav-link">
-                                <?= $_SESSION['user']['first_name'] ?> <?= $_SESSION['user']['last_name'] ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?= htmlspecialchars($_SESSION['user']['first_name']) ?>
                             </a>
-                        </li>
-                        <li class="navbar-text">
-                            <a href="index.php?route=logout" class="btn btn-outline-light btn-sm nav-link">Déconnexion</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                                <li><a class="dropdown-item" href="/di_cube_4_jardigenie/front_office/">Site marchand</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="?route=logout">Déconnexion</a></li>
+                            </ul>
                         </li>
                     <?php else: ?>
-                        <li class="navbar-text">
+                        <li class="nav-item">
                             <a href="index.php?route=login" class="btn btn-outline-light btn-sm nav-link">Connexion</a>
                         </li>
                     <?php endif; ?> 
