@@ -10,7 +10,7 @@ class AdminController {
     
     private function getUserModel() {
         if (!isset($this->userModel)) {
-            require_once __DIR__ . '/../Models/User.php';
+            require_once __DIR__ . '/../models/User.php';
             $this->userModel = new \models\User();
         }
         return $this->userModel;
