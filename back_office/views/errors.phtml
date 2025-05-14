@@ -1,7 +1,7 @@
 <?php if(isset($errors) && count($errors) > 0) : ?>
-    <ul class='error'>
+    <div class="alert alert-danger">
         <?php foreach($errors as $value) : ?>
             <li class='erreur'><?= $value; ?></li>
         <?php endforeach; ?>
-    </ul>
+    </div>
 <?php endif; ?>

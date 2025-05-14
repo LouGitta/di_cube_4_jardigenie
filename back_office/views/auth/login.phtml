@@ -15,14 +15,7 @@
                         <h3 class="mb-0">Administration - JardiGenie</h3>
                     </div>
                     <div class="card-body">
-                        <?php if (isset($errors) && !empty($errors)): ?>
-                            <div class="alert alert-danger">
-                                <?php foreach($errors as $error): ?>
-                                    <?= $error ?>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-
+                        <?php include_once('views/errors.phtml'); ?>
                         <form action="index.php?route=login-post" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
