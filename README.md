@@ -63,7 +63,7 @@ Ce projet propose un **front** et un **back office** prêt à l’emploi grâce 
 
 - **Controllers** : logique métier (dans `/controllers`)
 - **Models** : accès base de données, entités (dans `/models`)
-- **Views** : templates HTML/PHTML (dans `/views`)
+- **Views** : templates PHTML (dans `/views`)
 
 ---
 
