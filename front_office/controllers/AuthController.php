@@ -131,14 +131,12 @@ class AuthController {
     }
     
     public function logout() {
-        // Détruisez la session
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         session_unset();
         session_destroy();
         
-        // Redirigez vers la page d'accueil
         header('Location: index.php?route=home');
         exit;
     }
