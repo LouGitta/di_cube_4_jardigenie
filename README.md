@@ -42,13 +42,12 @@ Ce projet propose un **front** et un **back office** prêt à l’emploi grâce 
     - Vérifie que toutes les tables et données nécessaires sont bien présentes.
 2. **Clone le projet** :
     ```bash
-    git clone https://github.com/LouGitta/di_cube_4_jardigenie.git
+    git clone -b docker --single-branch https://github.com/LouGitta/di_cube_4_jardigenie.git
     cd di_cube_4_jardigenie
     ```
 3. **Construis et lance les conteneurs** :
     ```bash
-    docker build -t jardigenie .
-    docker run -d -p 8080:80 --name conteneur-jardigenie jardigenie
+    docker-compose up -d --build
     ```
 4. **Accède à l'application** :  
     Ouvre [http://localhost:8080](http://localhost:8080) dans ton navigateur.
