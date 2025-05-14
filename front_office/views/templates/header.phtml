@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container-fluid">
             <a class="navbar-brand" href="?route=home">
-                <img src="/di_cube_4_jardigenie/public/images/logojardigenie.png" alt="JardiGenie Logo" height="40">
+                <img src="images/logojardigenie.png" alt="JardiGenie Logo" height="40">
                 Jardigénie
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,7 +24,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="?route=profile">Mon profil</a></li>
                                 <?php if ($_SESSION['user']['is_admin'] == 1): ?>
-                                    <li><a class="dropdown-item" href="/di_cube_4_jardigenie/back_office/">Administration</a></li>
+                                    <li><a class="dropdown-item" href="back_office/">Administration</a></li>
                                 <?php endif; ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="?route=logout">Déconnexion</a></li>
