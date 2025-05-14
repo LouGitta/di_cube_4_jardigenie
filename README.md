@@ -1,10 +1,13 @@
-Back Office PHP – Dockerisé
-Ce projet correspond à un back office PHP (pattern MVC), prêt à l’emploi grâce à Docker.
+Jardigenie – Dockerisé
+Ce projet propose un front et un back office prêt à l’emploi grâce à Docker pour votre site de jardinage préféré.
 
 
         Fonctionnalités :
-    Front office :
 
+    Architecture MVC (Models, Views, Controllers)
+    Prêt à être lancé via Docker
+
+    Front office :
 - Création d'un compte
 - Accès à des produits
 - Possibilité de créer un panier avec plusieurs articles
@@ -15,20 +18,18 @@ Ce projet correspond à un back office PHP (pattern MVC), prêt à l’emploi gr
 - CRUD Articles
 - Visualisation commandes
 
-    Architecture MVC (Models, Views, Controllers)
-    Prêt à être lancé via Docker (avec Apache et PHP)
-
      Pré-requis :
 - Docker installé
 - PHP
 
+    
     Clone le projet :
 - git clone https://github.com/LouGitta/di_cube_4_jardigenie.git
 - cd di_cube_4_jardigenie
 
     Construis et lance les conteneurs :
 - docker build -t jardigenie .
-- docker run -d -p 8080:80 --name conteneur-jardigenie
+- docker run -d -p 8080:80 --name conteneur-jardigenie jardigenie
 
     Accède à l'application :
 - Ouvre http://localhost:8080 dans ton navigateur.
@@ -49,3 +50,4 @@ Views : templates HTML/PHTML (dans /views)
     Auteurs
 GITTA Lou
 DIABY Aboubacar
+BOMPOIL Arthur
